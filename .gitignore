@@ -1,0 +1,20 @@
+#
+/public/
+/resources/
+.hugo_build.lock
+
+# Dependencies
+node_modules/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# macOS and editor files
+.DS_Store
+.vscode/
+.idea/
+
+# Logs
+*.log

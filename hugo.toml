@@ -1,0 +1,6 @@
+# Configuration principale du site Hugo.
+
+baseURL = 'https://environn.eirb.fr/'
+locale = 'fr'
+defaultContentLanguage = 'fr'
+title = 'Environn’eirb'
