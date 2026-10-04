@@ -1,0 +1,37 @@
+{{- /*
+  footer.html - Site footer. Port of Footer.jsx.
+  - The Telegram button only appears when params.telegramURL is set in hugo.toml.
+  - The email button points to the contact section of the home page.
+*/ -}}
+{{- $socialClass := "flex h-10 w-10 items-center justify-center rounded-full bg-secondary text-muted-foreground transition-all hover:-translate-y-0.5 hover:bg-accent hover:text-accent-foreground" -}}
+<footer class="border-t border-border">
+  <div class="mx-auto max-w-6xl px-5 py-12 sm:px-8">
+    <div class="flex flex-col items-center justify-between gap-6 sm:flex-row">
+
+      {{- /* Identity */}}
+      <div class="flex items-center gap-3 text-center sm:text-left">
+        <div class="flex h-9 w-9 items-center justify-center rounded-full bg-accent/10">
+          <span class="font-heading font-bold text-accent">E</span>
+        </div>
+        <div>
+          <div class="font-heading font-bold">Environn’eirb</div>
+          <div class="text-xs text-muted-foreground">ENSEIRB-MATMECA · Bordeaux</div>
+        </div>
+      </div>
+
+      {{- /* Social links */}}
+      <div class="flex items-center gap-3">
+        {{ with site.Params.telegramURL }}
+          <a href="{{ . }}" aria-label="Telegram" class="{{ $socialClass }}">{{ partial "icon.html" (dict "name" "message-circle") }}</a>
+        {{ end }}
+        <a href="{{ site.Home.RelPermalink }}#contact" aria-label="Email" class="{{ $socialClass }}">{{ partial "icon.html" (dict "name" "mail") }}</a>
+      </div>
+    </div>
+
+    {{- /* Legal line */}}
+    <div class="mt-8 flex flex-col justify-between gap-2 border-t border-border pt-6 text-center text-xs text-muted-foreground sm:flex-row sm:text-left">
+      <span>© {{ now.Year }} Environn’eirb</span>
+      <span>Site léger · bas carbone · fait avec 🌿</span>
+    </div>
+  </div>
+</footer>

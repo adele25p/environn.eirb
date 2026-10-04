@@ -1,0 +1,64 @@
+{{- /*
+  hero.html - Home page hero section. Port of Hero.jsx.
+  Logo row, main heading, short pitch, call-to-action and mascot.
+  Elements with the "reveal-up" class animate on scroll (see assets/js/reveal.js);
+  transition-delay staggers their appearance.
+
+  Mascot: drop a file at assets/images/mascot.png and it is displayed
+  automatically. Until then a placeholder (leaf in a rounded frame) is shown.
+  A decorative background leaf can be added later as an <img> in the
+  absolutely positioned div at the top.
+*/ -}}
+<section id="top" class="relative overflow-hidden pt-28 pb-20 sm:pt-36 sm:pb-28">
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+
+    {{- /* Logo + location */}}
+    <div class="reveal-up mb-10 flex items-center gap-2.5">
+      {{ partial "logo-frame.html" (dict "size" 64) }}
+      <span class="font-mono-data text-xs uppercase tracking-[0.15em] text-muted-foreground">ENSEIRB-MATMECA · Bordeaux</span>
+    </div>
+
+    <div class="grid items-center gap-10 sm:grid-cols-12 sm:gap-12">
+
+      {{- /* Text column */}}
+      <div class="sm:col-span-7">
+        <h1 class="reveal-up font-heading text-[2.6rem] leading-[1.05] font-bold tracking-[-0.02em] sm:text-6xl" style="transition-delay: 80ms">
+          L’écologie,<br>
+          <span class="text-accent">sans prise</span><br>
+          de tête.
+        </h1>
+
+        <p class="reveal-up mt-7 max-w-lg text-lg leading-relaxed text-muted-foreground" style="transition-delay: 180ms">
+          Environn’eirb, l’asso de sensibilisation au bien-vivre en respectant
+          notre environnement (aka l’écologie) de l’ENSEIRB. On te partage
+          <strong class="font-semibold text-foreground">1 à 2 infos par semaine</strong>,
+          en douceur, pour t’informer et te motiver. Pas de culpabilisation, juste
+          de la bienveillance.
+        </p>
+
+        {{- /* Wrapper div: keeps the reveal transition apart from the button's hover transition */}}
+        <div class="reveal-up" style="transition-delay: 280ms">
+          <a href="#journal" class="mt-9 inline-flex items-center gap-2 rounded-full bg-accent px-7 py-4 font-medium text-accent-foreground transition-all hover:-translate-y-0.5 hover:brightness-95">
+            Lire le journal
+            {{ partial "icon.html" (dict "name" "arrow-down") }}
+          </a>
+        </div>
+      </div>
+
+      {{- /* Mascot column */}}
+      <div class="reveal-up flex justify-center sm:col-span-5" style="transition-delay: 200ms">
+        <div class="relative">
+          <div class="absolute inset-0 rounded-[2.5rem] bg-accent/10 blur-2xl"></div>
+          {{ with resources.Get "images/mascot.png" }}
+            <img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="Mascotte Environn’eirb, petite pousse souriante" class="relative h-56 w-56 object-contain sm:h-72 sm:w-72">
+          {{ else }}
+            <div class="relative flex h-56 w-56 items-center justify-center rounded-[2.5rem] border border-accent/20 bg-accent/10 sm:h-72 sm:w-72" aria-hidden="true">
+              {{ partial "icon.html" (dict "name" "leaf" "class" "h-1/3 w-1/3 text-accent" "strokeWidth" 1.25) }}
+            </div>
+          {{ end }}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

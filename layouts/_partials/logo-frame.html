@@ -1,0 +1,23 @@
+{{- /*
+  logo-frame.html - Soft rounded frame holding the circular club logo.
+  Port of LogoFrame.jsx. Placeholder (leaf in a circle) until the real logo
+  is provided: replace the leaf icon with an <img> pointing to assets/static.
+
+  Usage:
+    {{ partial "logo-frame.html" (dict "size" 44) }}
+
+  Parameters (all optional):
+    size       outer size in px (default 96)
+    showLabel  true to display the "PLANET’EIRB" caption under the logo
+    class      extra Tailwind classes for the outer element
+*/ -}}
+{{- $size := .size | default 96 -}}
+{{- $inner := mul $size 0.72 -}}
+<div class="relative flex items-center justify-center {{ .class }}" style="width: {{ $size }}px; height: {{ $size }}px" role="img" aria-label="Logo Environn’eirb">
+  <div class="relative flex items-center justify-center rounded-full border border-accent/20 bg-accent/10" style="width: {{ $inner }}px; height: {{ $inner }}px">
+    {{ partial "icon.html" (dict "name" "leaf" "class" "h-1/2 w-1/2 text-accent" "strokeWidth" 1.5) }}
+    {{ if .showLabel }}
+      <span class="font-mono-data absolute -bottom-5 whitespace-nowrap text-[9px] tracking-[0.3em] text-accent">PLANET’EIRB</span>
+    {{ end }}
+  </div>
+</div>

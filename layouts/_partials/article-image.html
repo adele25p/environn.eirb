@@ -1,0 +1,12 @@
+{{- /*
+  article-image.html - Returns the cover image resource of an article, or
+  false when there is none (no `image` field, or file not found in assets/).
+
+  Usage:
+    {{ with partial "article-image.html" . }}{{ (.Fill "720x480") ... }}{{ end }}
+*/ -}}
+{{- $img := false -}}
+{{- with .Params.image -}}
+  {{- with resources.Get . -}}{{- $img = . -}}{{- end -}}
+{{- end -}}
+{{- return $img -}}

@@ -1,0 +1,15 @@
+{{- /*
+  scripts.html - Bundles and loads the site JavaScript.
+  Every file listed in $files is concatenated into one minified, fingerprinted
+  file. To add a script (e.g. the scroll reveal), put it in assets/js/ and
+  add its path to the list.
+*/ -}}
+{{- $files := slice "js/header.js" "js/reveal.js" "js/articles-filter.js" "js/contact-form.js" -}}
+{{- $bundle := slice -}}
+{{- range $files -}}
+  {{- with resources.Get . }}{{ $bundle = $bundle | append . }}{{ end -}}
+{{- end -}}
+{{- with $bundle -}}
+  {{- $js := . | resources.Concat "js/main.js" | minify | fingerprint -}}
+  <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
+{{- end -}}

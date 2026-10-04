@@ -1,0 +1,31 @@
+{{- /*
+  article-card.html - Article card with cover image, used on /articles/.
+  Port of ArticleCard from Articles.jsx. Context: an article page.
+  Without a cover image, a leaf placeholder is shown instead.
+*/ -}}
+{{- $img := partial "article-image.html" . -}}
+<a href="{{ .RelPermalink }}" class="group block h-full overflow-hidden rounded-3xl border border-border bg-card transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-accent/5">
+  {{ if $img }}
+    {{ $thumb := $img.Fill "720x480 q80" }}
+    <div class="aspect-[3/2] overflow-hidden bg-secondary">
+      <img src="{{ $thumb.RelPermalink }}" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}" alt="{{ .Title }}" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105">
+    </div>
+  {{ else }}
+    <div class="flex aspect-[3/2] items-center justify-center bg-accent/10">
+      {{ partial "icon.html" (dict "name" "leaf" "class" "h-10 w-10 text-accent/40") }}
+    </div>
+  {{ end }}
+
+  <div class="p-6">
+    <div class="flex items-center justify-between">
+      <span class="font-mono-data text-xs tracking-wider text-accent uppercase">{{ partial "category-label.html" .Params.category }}</span>
+      <time class="font-mono-data text-xs text-muted-foreground" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02/01/2006" }}</time>
+    </div>
+    <h2 class="mt-3 font-heading text-xl leading-snug font-bold tracking-tight transition-colors group-hover:text-accent">{{ .Title }}</h2>
+    <p class="mt-2 line-clamp-3 text-sm leading-relaxed text-muted-foreground">{{ .Params.synthesis }}</p>
+    <span class="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-accent">
+      Lire la suite
+      {{ partial "icon.html" (dict "name" "arrow-right" "class" "h-4 w-4 transition-transform group-hover:translate-x-1") }}
+    </span>
+  </div>
+</a>

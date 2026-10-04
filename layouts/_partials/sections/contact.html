@@ -1,0 +1,84 @@
+{{- /*
+  contact.html - "Contact" section of the home page (#contact).
+  Port of ContactSection.jsx. The form is sent to an external service
+  (Web3Forms by default) configured in hugo.toml: params.contactFormAction and
+  params.contactFormAccessKey. Messages are delivered by email.
+
+  - With JavaScript, assets/js/contact-form.js sends the form in the
+    background and sets data-status on the form (idle, sending, sent, error).
+    The button label and the messages below are shown or hidden in CSS from
+    that attribute (group-data-[status=...] classes).
+  - Without JavaScript, the browser submits the form normally.
+  - "botcheck" is a hidden honeypot field: bots fill it, the service rejects them.
+  - In development, a warning is displayed while the form is not configured.
+*/ -}}
+{{- $action := site.Params.contactFormAction -}}
+{{- $key := site.Params.contactFormAccessKey -}}
+{{- $needsKey := strings.Contains ($action | default "") "web3forms" -}}
+{{- $configured := and $action (or $key (not $needsKey)) -}}
+<section id="contact" class="py-20 sm:py-28">
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
+
+      {{- /* Text column */}}
+      <div class="reveal-up lg:col-span-5">
+        <span class="inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 text-sm font-medium text-accent">
+          {{ partial "icon.html" (dict "name" "mail" "class" "h-3.5 w-3.5") }}
+          Contact
+        </span>
+        <h2 class="mt-5 font-heading text-3xl leading-tight font-bold tracking-tight sm:text-5xl">
+          Envoie-nous<br>
+          un petit mot.
+        </h2>
+        <p class="mt-5 max-w-md text-lg leading-relaxed text-muted-foreground">
+          Une idée de capsule, une question, une envie de parler
+          d’écologie ? Le formulaire est ouvert, on répond vite.
+        </p>
+        <div class="mt-8 space-y-3 text-sm">
+          <div class="flex items-center gap-3">
+            {{ partial "icon.html" (dict "name" "map-pin" "class" "h-4 w-4 shrink-0 text-accent") }}
+            <span class="text-muted-foreground">ENSEIRB-MATMECA — Talence, Bordeaux</span>
+          </div>
+        </div>
+      </div>
+
+      {{- /* Form column */}}
+      <div class="reveal-up lg:col-span-7" style="transition-delay: 120ms">
+        <form id="contact-form" data-status="idle" method="POST" action="{{ $action }}" class="group space-y-5 rounded-3xl border border-border bg-card p-6 sm:p-8">
+
+          {{ if and hugo.IsDevelopment (not $configured) }}
+            <p class="rounded-2xl border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive">
+              Dev only: the form is not configured yet. Set contactFormAccessKey in hugo.toml.
+            </p>
+          {{ end }}
+
+          {{- /* Sent to the form service along with the fields */}}
+          {{ with $key }}<input type="hidden" name="access_key" value="{{ . }}">{{ end }}
+          <input type="hidden" name="subject" value="Nouveau message depuis le site Environn’eirb">
+          <input type="hidden" name="from_name" value="Site Environn’eirb">
+          {{- /* Honeypot: must stay empty */}}
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" class="hidden">
+
+          {{ partial "form-field.html" (dict "label" "Nom" "name" "name" "placeholder" "Comment tu t’appelles ?" "autocomplete" "name" "required" true) }}
+          {{ partial "form-field.html" (dict "label" "Email" "name" "email" "type" "email" "placeholder" "ton.email@exemple.fr" "autocomplete" "email" "required" true) }}
+          {{ partial "form-field.html" (dict "label" "Message" "name" "message" "placeholder" "Dis-nous tout…" "textarea" true "required" true) }}
+
+          <button type="submit" class="flex w-full items-center justify-center gap-2 rounded-full bg-accent py-4 font-medium text-accent-foreground transition-all hover:brightness-95 disabled:opacity-50">
+            <span class="inline-flex items-center gap-2 group-data-[status=sending]:hidden group-data-[status=sent]:hidden">
+              Envoyer
+              {{ partial "icon.html" (dict "name" "send") }}
+            </span>
+            <span class="hidden group-data-[status=sending]:inline">Envoi…</span>
+            <span class="hidden group-data-[status=sent]:inline">Message envoyé ✓</span>
+          </button>
+
+          <p role="status" class="hidden text-center text-sm font-medium text-accent group-data-[status=sent]:block">Merci ! On te répond vite. 🌿</p>
+          <p role="alert" class="hidden text-center text-sm text-destructive group-data-[status=error]:block">
+            L’envoi a échoué. Réessaie dans un instant{{ if site.Params.telegramURL }} ou écris-nous sur Telegram{{ end }}.
+          </p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>

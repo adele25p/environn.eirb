@@ -1,0 +1,66 @@
+{{- /*
+  list.html (articles) - Page listing every article (/articles/).
+  All cards are in the HTML; assets/js/articles-filter.js hides the ones that
+  do not match the selected category. Without
+  JavaScript the filter panel stays hidden and the full list is shown.
+
+  Each card wrapper carries data-category, which the script reads. Selected
+  states are styled via data-[active=true] classes (the script only sets the
+  attribute).
+*/ -}}
+{{ define "main" }}
+{{- $pages := .Pages -}}
+
+<section class="pt-32 pb-12 sm:pt-36 sm:pb-16">
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+
+    <a href="{{ site.Home.RelPermalink }}" class="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-accent">
+      {{ partial "icon.html" (dict "name" "arrow-left") }}
+      Retour à l’accueil
+    </a>
+
+    <div class="reveal-up">
+      <span class="mt-6 inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 text-sm font-medium text-accent">
+        {{ partial "icon.html" (dict "name" "leaf" "class" "h-3.5 w-3.5") }}
+        Le journal complet
+      </span>
+      <h1 class="mt-5 font-heading text-3xl leading-tight font-bold tracking-tight sm:text-5xl">{{ .Title }}</h1>
+      <p class="mt-4 max-w-xl text-lg leading-relaxed text-muted-foreground">{{ .Description }}</p>
+    </div>
+
+    {{ if $pages }}
+      {{- /* Filters: hidden by default, revealed by articles-filter.js */}}
+      <div id="articles-filters" hidden class="mt-10">
+        <button id="filters-toggle" type="button" aria-expanded="false" aria-controls="filters-panel" class="group inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-muted-foreground transition-all hover:border-accent/40 hover:text-accent">
+          {{ partial "icon.html" (dict "name" "sliders-horizontal") }}
+          Filtrer
+          {{ partial "icon.html" (dict "name" "chevron-down" "class" "h-4 w-4 transition-transform group-aria-expanded:rotate-180") }}
+        </button>
+
+        <div id="filters-panel" hidden class="mt-4 flex flex-col gap-4">
+          <div class="flex flex-wrap gap-2">
+            <button type="button" data-filter-category="all" data-active="true" class="rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-muted-foreground transition-all hover:border-accent/40 hover:text-accent data-[active=true]:border-accent data-[active=true]:bg-accent data-[active=true]:text-accent-foreground">Toutes</button>
+            {{ range hugo.Data.categories }}
+              <button type="button" data-filter-category="{{ .value }}" data-active="false" class="rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-muted-foreground transition-all hover:border-accent/40 hover:text-accent data-[active=true]:border-accent data-[active=true]:bg-accent data-[active=true]:text-accent-foreground">{{ .label }}</button>
+            {{ end }}
+          </div>
+
+        </div>
+      </div>
+
+      <div id="articles-grid" class="mt-12 grid gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+        {{ range $i, $page := $pages }}
+          <div class="reveal-up h-full" style="transition-delay: {{ mul (mod $i 3) 90 }}ms" data-article data-category="{{ $page.Params.category }}">
+            {{ partial "cards/article-card.html" $page }}
+          </div>
+        {{ end }}
+      </div>
+
+      <p id="articles-empty" hidden class="mt-16 text-center text-muted-foreground">Aucun article pour ces filtres. Essaie autre chose ! 🌱</p>
+    {{ else }}
+      <p class="mt-16 text-center text-muted-foreground">Aucun article pour l’instant. Reviens vite ! 🌱</p>
+    {{ end }}
+
+  </div>
+</section>
+{{ end }}

@@ -1,0 +1,32 @@
+{{- /*
+  head.html - Content of <head>: metadata, fonts and CSS.
+  Title and description can be overridden per page through the front matter
+  (title, description).
+*/ -}}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>{{ if .IsHome }}{{ site.Title }} — {{ site.Params.tagline }}{{ else if eq .Kind "404" }}Page introuvable | {{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
+{{ if eq .Kind "404" }}<meta name="robots" content="noindex">{{ end }}
+<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Params.synthesis }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}{{ end }}">
+
+{{- /* Enable the favicon link as soon as static/favicon.svg is provided. */ -}}
+{{ if fileExists "static/favicon.svg" }}
+<link rel="icon" type="image/svg+xml" href="{{ "favicon.svg" | relURL }}">
+{{ end }}
+
+{{- /* Google Fonts: Space Grotesk, Inter, JetBrains Mono */ -}}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+{{- /* Adds the "js" class on <html>: enables the .reveal-up animations */ -}}
+<script>document.documentElement.classList.add('js')</script>
+
+{{- /*
+  The CSS is built deferred (templates.Defer): Tailwind must wait until every
+  page is rendered to know the full set of classes in use.
+*/ -}}
+{{ with (templates.Defer (dict "key" "global")) }}
+  {{ partial "css.html" . }}
+{{ end }}

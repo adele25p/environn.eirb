@@ -1,6 +1,67 @@
-# Configuration principale du site Hugo.
+# hugo.toml - Configuration file for Hugo static site generator
+# This file contains the configuration settings for the Hugo static site generator. It specifies the base URL, locale, default content language, and title of the website. It also declares site-wide parameters and the build settings required by Tailwind CSS.
 
 baseURL = 'https://environn.eirb.fr/'
 locale = 'fr'
 defaultContentLanguage = 'fr'
 title = 'Environn’eirb'
+
+# Site-wide parameters, available in templates as site.Params.*
+[params]
+  tagline = 'L’écologie, sans prise de tête'
+  description = "Environn’eirb — l’écologie, sans prise de tête. Association étudiante de sensibilisation au bien-vivre en respectant notre environnement, à l’ENSEIRB-MATMECA."
+  telegramURL = 'https://t.me/+z53Z2Hva0zwyYTE0'
+  # Contact form (see layouts/_partials/sections/contact.html).
+  # Default service: Web3Forms. Get a free access key at https://web3forms.com
+  # (enter the club mailbox: messages are delivered there), then paste it below.
+  # The key is public by design. To use Formspree instead, set contactFormAction
+  # to your https://formspree.io/f/xxxx URL and leave the key empty.
+  contactFormAction = 'https://api.web3forms.com/submit'
+  contactFormAccessKey = ''
+
+# Main navigation (header). Rendered by layouts/_partials/header.html.
+# Anchors point to the sections of the home page. Order is set by weight.
+[[menus.main]]
+  name = 'Journal'
+  url = '/#journal'
+  weight = 10
+
+[[menus.main]]
+  name = 'Rejoindre'
+  url = '/#rejoindre'
+  weight = 20
+
+[[menus.main]]
+  name = 'Équipe'
+  url = '/#equipe'
+  weight = 30
+
+[[menus.main]]
+  name = 'Contact'
+  url = '/#contact'
+  weight = 40
+
+# --- Tailwind CSS v4 integration (see layouts/_partials/css.html) ---
+# Hugo writes hugo_stats.json (the list of HTML classes in use) on every build.
+# Tailwind reads it to generate only the CSS that is actually needed.
+[build.buildStats]
+  enable = true
+
+# Allow Hugo to run the Tailwind CSS CLI (blocked by default for security).
+# This list replaces Hugo's defaults, so the default entries are repeated here.
+[security.exec]
+  allow = ['^(dart-)?sass(-embedded)?$', '^go$', '^git$', '^node$', '^postcss$', '^tailwindcss$']
+
+# Rebuild the CSS whenever hugo_stats.json changes (during `hugo server`).
+[[build.cachebusters]]
+  source = 'assets/notwatching/hugo_stats\.json'
+  target = 'css'
+
+# Expose hugo_stats.json to Tailwind through the assets directory.
+[[module.mounts]]
+  source = 'assets'
+  target = 'assets'
+
+[[module.mounts]]
+  source = 'hugo_stats.json'
+  target = 'assets/notwatching/hugo_stats.json'

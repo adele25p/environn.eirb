@@ -1,0 +1,19 @@
+# categories.yaml - Article categories
+# Single source of truth for the categories: the order below is the order of
+# the filter buttons on /articles/, and "label" is the text displayed on cards.
+# "value" must match the `category` field in the front matter of the articles.
+# To add a category, add a line here: no template to edit.
+- value: campus
+  label: Campus
+- value: énergie
+  label: Énergie
+- value: alimentation
+  label: Alimentation
+- value: déchets
+  label: Déchets
+- value: mobilité
+  label: Mobilité
+- value: biodiversité
+  label: Biodiversité
+- value: numérique
+  label: Numérique

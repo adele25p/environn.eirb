@@ -1,0 +1,11 @@
+# team.yaml - Team members
+# One entry = one card of the "L’équipe" section (team.html), displayed in this
+# order. The section is always filled up to 4 slots with "Place libre" cards.
+#   name         required - first and last name
+#   role         required - role in the club (e.g. Communication, Design, Dev)
+#   photo        optional - image in assets/, e.g. images/team/prenom.jpg
+#                (cropped to a square; the initial is shown when missing)
+#   description  optional - short sentence to humanize the member
+- name: "Adèle"
+  role: "Présidente"
+  description: "Coordonne l’association, assure une veille sur les enjeux écologiques et maintient le site à jour."

@@ -1,0 +1,27 @@
+{{- /*
+  form-field.html - Labelled text input or textarea of the contact form.
+  Port of the Field component from ContactSection.jsx.
+
+  Usage:
+    {{ partial "form-field.html" (dict "label" "Nom" "name" "name" "placeholder" "..." "required" true) }}
+
+  Parameters:
+    label         required - text of the label
+    name          required - field name sent to the form service (also builds the id)
+    placeholder   optional
+    type          optional - input type (default "text"); ignored for textareas
+    autocomplete  optional - browser autofill hint (e.g. "name", "email")
+    required      optional - true to make the field mandatory
+    textarea      optional - true for a multi-line field
+    rows          optional - textarea height in rows (default 4)
+*/ -}}
+{{- $id := printf "contact-%s" .name -}}
+{{- $class := "mt-2 w-full rounded-2xl border border-border bg-background px-4 py-3 text-base outline-none transition-all placeholder:text-muted-foreground/50 focus:border-accent focus:ring-2 focus:ring-accent/20" -}}
+<div>
+  <label for="{{ $id }}" class="block text-sm font-medium text-muted-foreground">{{ .label }}</label>
+  {{ if .textarea }}
+    <textarea id="{{ $id }}" name="{{ .name }}" rows="{{ .rows | default 4 }}" placeholder="{{ .placeholder }}" {{ if .required }}required{{ end }} class="{{ $class }} resize-none"></textarea>
+  {{ else }}
+    <input id="{{ $id }}" name="{{ .name }}" type="{{ .type | default "text" }}" placeholder="{{ .placeholder }}" {{ with .autocomplete }}autocomplete="{{ . }}"{{ end }} {{ if .required }}required{{ end }} class="{{ $class }}">
+  {{ end }}
+</div>

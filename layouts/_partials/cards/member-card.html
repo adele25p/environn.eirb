@@ -1,0 +1,23 @@
+{{- /*
+  member-card.html - Card of one team member. Port of MemberCard from TeamSection.jsx.
+  Context: one entry of data/team.yaml (name, role, photo, description).
+  Without a photo (or if the file is not found in assets/), the first letter
+  of the name is shown in a circle.
+*/ -}}
+{{- $photo := false -}}
+{{- with .photo -}}
+  {{- with resources.Get . -}}{{- $photo = . -}}{{- end -}}
+{{- end -}}
+<div class="h-full rounded-3xl border border-border bg-card p-5 text-center transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-accent/5 sm:p-6">
+  <div class="relative mx-auto h-24 w-24 overflow-hidden rounded-full border-2 border-accent/20 bg-secondary sm:h-28 sm:w-28">
+    {{ if $photo }}
+      {{ $img := $photo.Fill "224x224 q85" }}
+      <img src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}" alt="{{ .name }}" loading="lazy" class="h-full w-full object-cover">
+    {{ else }}
+      <div class="flex h-full w-full items-center justify-center font-heading text-3xl font-bold text-accent">{{ substr .name 0 1 | upper }}</div>
+    {{ end }}
+  </div>
+  <h3 class="mt-4 font-heading text-lg leading-tight font-bold">{{ .name }}</h3>
+  {{ with .role }}<span class="mt-1 block text-sm font-medium text-accent">{{ . }}</span>{{ end }}
+  {{ with .description }}<p class="mt-2 text-sm leading-relaxed text-muted-foreground">{{ . }}</p>{{ end }}
+</div>

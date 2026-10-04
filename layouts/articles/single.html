@@ -1,0 +1,70 @@
+{{- /*
+  single.html (articles) - Detail page of one article (/articles/<name>/).
+  Port of pages/ArticleDetail.jsx. The body is the Markdown content of the
+  file, wrapped in .prose-eco (see assets/css/main.css). Without a body, the
+  synthesis is shown instead. The "article not found" state is handled by
+  404.html (added in the finishing step).
+*/ -}}
+{{ define "main" }}
+{{- $list := site.GetPage "/articles" -}}
+{{- $img := partial "article-image.html" . -}}
+<article class="pt-32 pb-12 sm:pt-36 sm:pb-16">
+  <div class="mx-auto max-w-3xl px-5 sm:px-8">
+
+    <a href="{{ $list.RelPermalink }}" class="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-accent">
+      {{ partial "icon.html" (dict "name" "arrow-left") }}
+      Tous les articles
+    </a>
+
+    <div class="reveal-up">
+      <div class="mt-6 flex flex-wrap items-center gap-3">
+        <span class="inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 text-sm font-medium text-accent">
+          {{ partial "icon.html" (dict "name" "leaf" "class" "h-3.5 w-3.5") }}
+          {{ partial "category-label.html" .Params.category }}
+        </span>
+        <span class="inline-flex items-center gap-1.5 text-sm text-muted-foreground">
+          {{ partial "icon.html" (dict "name" "calendar" "class" "h-3.5 w-3.5") }}
+          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02/01/2006" }}</time>
+        </span>
+      </div>
+
+      <h1 class="mt-5 font-heading text-3xl leading-tight font-bold tracking-tight sm:text-5xl">{{ .Title }}</h1>
+      <p class="mt-5 text-lg leading-relaxed text-muted-foreground">{{ .Params.synthesis }}</p>
+
+      <div class="mt-6 flex items-center gap-2">
+        <span class="text-xs font-medium text-muted-foreground">Impact</span>
+        {{ partial "impact-leaves.html" (dict "level" (int .Params.impact) "class" "h-4 w-4") }}
+      </div>
+
+      <div class="mt-6 space-y-1 text-sm text-muted-foreground">
+        <p><span class="font-medium">Auteur :</span> {{ .Params.author }}</p>
+        {{ with .Params.contributors }}
+          <p><span class="font-medium">Avec l’aide de :</span> {{ delimit . ", " }}</p>
+        {{ end }}
+      </div>
+    </div>
+
+    {{ if $img }}
+      {{ $cover := $img.Fill "1200x675 q80" }}
+      <div class="reveal-up mt-8 aspect-video overflow-hidden rounded-3xl border border-border bg-secondary" style="transition-delay: 100ms">
+        <img src="{{ $cover.RelPermalink }}" width="{{ $cover.Width }}" height="{{ $cover.Height }}" alt="{{ .Title }}" class="h-full w-full object-cover">
+      </div>
+    {{ end }}
+
+    <div class="reveal-up prose-eco mt-10" style="transition-delay: 150ms">
+      {{ with .Content }}
+        {{ . }}
+      {{ else }}
+        <p>{{ .Params.synthesis }}</p>
+      {{ end }}
+    </div>
+
+    <div class="mt-14 border-t border-border pt-8">
+      <a href="{{ $list.RelPermalink }}" class="inline-flex items-center gap-2 font-medium text-accent transition-all hover:gap-3">
+        {{ partial "icon.html" (dict "name" "arrow-right") }}
+        Lire les autres articles
+      </a>
+    </div>
+  </div>
+</article>
+{{ end }}

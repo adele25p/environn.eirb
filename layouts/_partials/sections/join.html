@@ -1,0 +1,67 @@
+{{- /*
+  join.html - "Nous rejoindre" section of the home page (#rejoindre).
+  Port of JoinHub.jsx. The role cards come from data/join_roles.yaml.
+  The Telegram block reads params.telegramURL from hugo.toml: when it is
+  empty, the button is replaced by a "Bientôt disponible" badge instead of a
+  dead link.
+*/ -}}
+{{- $telegram := site.Params.telegramURL -}}
+<section id="rejoindre" class="bg-secondary/50 py-20 sm:py-28">
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+
+    <div class="reveal-up">
+      <span class="inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 text-sm font-medium text-accent">
+        {{ partial "icon.html" (dict "name" "send" "class" "h-3.5 w-3.5") }}
+        Nous rejoindre
+      </span>
+      <h2 class="mt-5 max-w-2xl font-heading text-3xl leading-tight font-bold tracking-tight sm:text-5xl">Viens faire vivre l’écologie sur le campus.</h2>
+      <p class="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
+        Pas de réunions infinies, pas de bureaucratie. Tu viens à ton
+        rythme, tu contribues quand tu veux. L’important, c’est l’envie.
+      </p>
+    </div>
+
+    {{- /* Role cards */}}
+    <div class="mt-12 grid gap-5 sm:grid-cols-3 sm:gap-6">
+      {{ range $i, $role := hugo.Data.join_roles }}
+        <div class="reveal-up h-full" style="transition-delay: {{ mul $i 100 }}ms">
+          <div class="h-full rounded-3xl border border-border bg-background p-6 sm:p-7">
+            <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-accent/10">
+              {{ partial "icon.html" (dict "name" $role.icon "class" "h-5 w-5 text-accent") }}
+            </div>
+            <span class="font-mono-data mt-4 block text-xs tracking-wider text-muted-foreground uppercase">{{ $role.tag }}</span>
+            <h3 class="mt-1 font-heading text-xl font-bold">{{ $role.title }}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted-foreground">{{ $role.desc }}</p>
+          </div>
+        </div>
+      {{ end }}
+    </div>
+
+    {{- /* Telegram block */}}
+    <div class="reveal-up" style="transition-delay: 120ms">
+      <div class="mt-8 flex flex-col justify-between gap-6 rounded-3xl bg-accent p-7 text-accent-foreground sm:flex-row sm:items-center sm:p-9">
+        <div class="flex items-center gap-4">
+          <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent-foreground/15">
+            <span class="ping-dot h-2.5 w-2.5 rounded-full bg-accent-foreground"></span>
+          </div>
+          <div>
+            <h3 class="font-heading text-xl font-bold">Rejoins le canal Telegram</h3>
+            <p class="mt-1 text-sm opacity-80">
+              C’est là qu’on s’organise et partage les idées.{{ if not $telegram }} Groupe bientôt en ligne.{{ end }}
+            </p>
+          </div>
+        </div>
+
+        {{ if $telegram }}
+          <a href="{{ $telegram }}" class="inline-flex items-center justify-center gap-2 rounded-full bg-accent-foreground px-6 py-3.5 font-medium whitespace-nowrap text-accent transition-all hover:brightness-95">
+            {{ partial "icon.html" (dict "name" "message-circle") }}
+            Rejoindre
+          </a>
+        {{ else }}
+          <span class="inline-flex items-center justify-center rounded-full bg-accent-foreground/15 px-6 py-3.5 font-medium whitespace-nowrap">Bientôt disponible</span>
+        {{ end }}
+      </div>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,19 @@
+{{- /*
+  impact-leaves.html - Row of 5 leaves showing the impact level (1 to 5).
+  Filled leaves = level reached, grey leaves = remaining.
+
+  Usage:
+    {{ partial "impact-leaves.html" (dict "level" (int .Params.impact) "class" "h-3.5 w-3.5") }}
+
+  Parameters:
+    level  impact from 1 to 5 (default 3)
+    class  Tailwind size classes of each leaf (default "h-3.5 w-3.5")
+*/ -}}
+{{- $level := .level | default 3 -}}
+{{- $class := .class | default "h-3.5 w-3.5" -}}
+<span class="flex items-center gap-1.5" role="img" aria-label="Impact : {{ $level }} sur 5">
+  {{- range seq 1 5 -}}
+    {{- $tone := cond (le . $level) "text-accent fill-accent/20" "text-border" -}}
+    {{ partial "icon.html" (dict "name" "leaf" "class" (printf "%s %s" $class $tone)) }}
+  {{- end -}}
+</span>

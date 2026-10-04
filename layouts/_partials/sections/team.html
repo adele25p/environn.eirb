@@ -1,0 +1,52 @@
+{{- /*
+  team.html - "L’équipe" section of the home page (#equipe).
+  Port of TeamSection.jsx. Members come from data/team.yaml, in file order.
+  The grid is always filled up to $slots cards with dashed "Place libre"
+  cards that link to the "Nous rejoindre" section.
+*/ -}}
+{{- $slots := 4 -}}
+{{- $members := hugo.Data.team | default slice -}}
+{{- $count := len $members -}}
+{{- $empty := sub $slots $count -}}
+<section id="equipe" class="py-20 sm:py-28">
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+
+    <div class="reveal-up">
+      <span class="inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 text-sm font-medium text-accent">
+        {{ partial "icon.html" (dict "name" "users" "class" "h-3.5 w-3.5") }}
+        L’équipe
+      </span>
+      <h2 class="mt-5 font-heading text-3xl leading-tight font-bold tracking-tight sm:text-5xl">
+        Une équipe<br>
+        <span class="text-muted-foreground">qui se construit.</span>
+      </h2>
+      <p class="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
+        Pour l’instant, on est une poignée. Les places sont libres : si
+        l’aventure te tente, on te garde un siège.
+      </p>
+    </div>
+
+    <div class="mt-12 grid grid-cols-2 gap-5 sm:gap-6 lg:grid-cols-4">
+      {{ range $i, $member := $members }}
+        <div class="reveal-up h-full" style="transition-delay: {{ mul $i 90 }}ms">
+          {{ partial "cards/member-card.html" $member }}
+        </div>
+      {{ end }}
+
+      {{ if gt $empty 0 }}
+        {{ range seq $empty }}
+          <div class="reveal-up h-full" style="transition-delay: {{ mul (add $count (sub . 1)) 90 }}ms">
+            <a href="#rejoindre" class="block h-full rounded-3xl border-2 border-dashed border-border p-5 text-center transition-all hover:-translate-y-1 hover:border-accent/50 hover:bg-accent/5 sm:p-6">
+              <div class="mx-auto flex h-24 w-24 items-center justify-center rounded-full border-2 border-dashed border-border text-accent/50 sm:h-28 sm:w-28">
+                {{ partial "icon.html" (dict "name" "plus" "class" "h-9 w-9") }}
+              </div>
+              <h3 class="mt-4 font-heading text-lg leading-tight font-bold text-muted-foreground">Place libre</h3>
+              <span class="mt-1 block text-sm font-medium text-accent">Rejoins l’équipe</span>
+            </a>
+          </div>
+        {{ end }}
+      {{ end }}
+    </div>
+
+  </div>
+</section>

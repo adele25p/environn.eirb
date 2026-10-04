@@ -1,0 +1,17 @@
+{{- /*
+  feed-card.html - Compact article card used on the home page (no image).
+  Port of FeedCard from ChronicleFeed.jsx. Context: an article page.
+*/ -}}
+<a href="{{ .RelPermalink }}" class="group flex h-full flex-col rounded-3xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-accent/5 sm:p-7">
+  <div class="flex items-center justify-between">
+    <span class="font-mono-data text-xs tracking-wider text-accent uppercase">{{ partial "category-label.html" .Params.category }}</span>
+    <time class="font-mono-data text-xs text-muted-foreground" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02/01/2006" }}</time>
+  </div>
+
+  <h3 class="mt-4 font-heading text-xl leading-snug font-bold tracking-tight transition-colors group-hover:text-accent">{{ .Title }}</h3>
+  <p class="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{{ .Params.synthesis }}</p>
+
+  <div class="mt-5">
+    {{ partial "impact-leaves.html" (dict "level" (int .Params.impact)) }}
+  </div>
+</a>

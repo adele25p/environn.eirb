@@ -1,0 +1,13 @@
+{{- /*
+  category-label.html - Returns the display label of a category.
+  Looks the value up in data/categories.yaml; falls back to the raw value.
+
+  Usage:
+    {{ partial "category-label.html" .Params.category }}
+*/ -}}
+{{- $cat := . -}}
+{{- $label := $cat -}}
+{{- range hugo.Data.categories -}}
+  {{- if eq .value $cat -}}{{- $label = .label -}}{{- end -}}
+{{- end -}}
+{{- return $label -}}

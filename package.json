@@ -1,0 +1,13 @@
+{
+  "name": "environn-eirb",
+  "private": true,
+  "description": "Hugo website for Environn'eirb. Node is only used for Tailwind CSS.",
+  "scripts": {
+    "dev": "hugo server",
+    "build": "hugo --gc --minify"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.0.0",
+    "tailwindcss": "^4.0.0"
+  }
+}

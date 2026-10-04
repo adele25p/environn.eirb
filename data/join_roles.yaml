@@ -1,0 +1,19 @@
+# join_roles.yaml - Ways to join the club
+# One entry = one card of the "Nous rejoindre" section (join.html), displayed
+# in this order.
+#   icon  icon name from layouts/_partials/icon.html (add new ones there)
+#   tag   small uppercase label above the title
+#   title card title
+#   desc  short description
+- icon: pen-line
+  tag: Rédaction
+  title: Rédiger
+  desc: "Tu aimes expliquer simplement ? Écris des articles courts sur l’écologie et la vie du campus."
+- icon: palette
+  tag: Design
+  title: Créer
+  desc: "Tu as l’œil pour les couleurs et les images ? Imagine les visuels qui donnent envie de lire et d’agir."
+- icon: search
+  tag: Veille
+  title: Repérer
+  desc: "Tu aimes dénicher des informations fiables ? Repère les sujets et les initiatives à partager chaque semaine."

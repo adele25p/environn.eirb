@@ -1,7 +1,8 @@
-#
+# Hugo build files
 /public/
 /resources/
 .hugo_build.lock
+hugo_stats.json
 
 # Dependencies
 node_modules/
