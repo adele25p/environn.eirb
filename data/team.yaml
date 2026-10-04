@@ -1,6 +1,6 @@
 # team.yaml - Team members
 # One entry = one card of the "L’équipe" section (team.html), displayed in this
-# order. The section is always filled up to 4 slots with "Place libre" cards.
+# order.
 #   name         required - first and last name
 #   role         required - role in the club (e.g. Communication, Design, Dev)
 #   photo        optional - image in assets/, e.g. images/team/prenom.jpg

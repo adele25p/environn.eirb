@@ -22,7 +22,7 @@
     </div>
 
     {{- /* Role cards */}}
-    <div class="mt-12 grid gap-5 sm:grid-cols-3 sm:gap-6">
+    <div class="mt-12 grid min-h-168 gap-5 sm:min-h-56 sm:grid-cols-3 sm:gap-6">
       {{ range $i, $role := hugo.Data.join_roles }}
         <div class="reveal-up h-full" style="transition-delay: {{ mul $i 100 }}ms">
           <div class="h-full rounded-3xl border border-border bg-background p-6 sm:p-7">

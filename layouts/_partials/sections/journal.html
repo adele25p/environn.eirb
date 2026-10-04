@@ -18,18 +18,20 @@
       </h2>
     </div>
 
-    {{ $latest := first 3 $articles.Pages }}
-    {{ if $latest }}
-      <div class="mt-12 grid gap-5 sm:grid-cols-3 sm:gap-6">
-        {{ range $i, $page := $latest }}
-          <div class="reveal-up h-full" style="transition-delay: {{ mul $i 100 }}ms">
-            {{ partial "cards/feed-card.html" $page }}
-          </div>
-        {{ end }}
-      </div>
-    {{ else }}
-      <p class="mt-12 text-muted-foreground">Les premiers articles arrivent bientôt 🌱</p>
-    {{ end }}
+    <div class="mt-12 min-h-64">
+      {{ $latest := first 3 $articles.Pages }}
+      {{ if $latest }}
+        <div class="grid gap-5 sm:grid-cols-3 sm:gap-6">
+          {{ range $i, $page := $latest }}
+            <div class="reveal-up h-full" style="transition-delay: {{ mul $i 100 }}ms">
+              {{ partial "cards/feed-card.html" $page }}
+            </div>
+          {{ end }}
+        </div>
+      {{ else }}
+        <p class="text-muted-foreground">Les premiers articles arrivent bientôt 🌱</p>
+      {{ end }}
+    </div>
 
     <div class="reveal-up mt-12 text-center">
       <a href="{{ $articles.RelPermalink }}" class="inline-flex items-center gap-2 font-medium text-accent transition-all hover:gap-3">
