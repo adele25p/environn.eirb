@@ -5,7 +5,7 @@
   to serve it for unknown URLs (see "Deployment" in the README).
 */ -}}
 {{ define "main" }}
-<section class="px-5 pt-40 pb-32 text-center">
+<section class="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center px-5 py-32 text-center sm:min-h-[calc(100vh-5rem)]">
   {{ partial "icon.html" (dict "name" "leaf" "class" "mx-auto h-12 w-12 text-accent/40" "strokeWidth" 1.5) }}
   <h1 class="mt-6 font-heading text-2xl font-bold">Page introuvable</h1>
   <p class="mt-2 text-muted-foreground">Elle a peut-être été déplacée ou retirée.</p>

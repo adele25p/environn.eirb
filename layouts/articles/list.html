@@ -11,8 +11,8 @@
 {{ define "main" }}
 {{- $pages := .Pages -}}
 
-<section class="pt-32 pb-12 sm:pt-36 sm:pb-16">
-  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+<section class="{{ if not $pages }}flex min-h-[calc(100vh-4rem)] sm:min-h-[calc(100vh-5rem)]{{ end }} pt-32 pb-12 sm:pt-36 sm:pb-16">
+  <div class="{{ if not $pages }}flex flex-1 flex-col{{ end }} mx-auto w-full max-w-6xl px-5 sm:px-8">
 
     <a href="{{ site.Home.RelPermalink }}" class="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-accent">
       {{ partial "icon.html" (dict "name" "arrow-left") }}
@@ -58,7 +58,7 @@
 
       <p id="articles-empty" hidden class="mt-16 text-center text-muted-foreground">Aucun article pour ces filtres. Essaie autre chose ! 🌱</p>
     {{ else }}
-      <p class="mt-16 text-center text-muted-foreground">Aucun article pour l’instant. Reviens vite ! 🌱</p>
+      <p class="flex flex-1 items-center justify-center text-center text-muted-foreground">Aucun article pour l’instant. Reviens vite ! 🌱</p>
     {{ end }}
 
   </div>
