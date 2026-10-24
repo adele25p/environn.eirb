@@ -4,7 +4,7 @@ Document de spécifications techniques : présente la stack technique, la struct
 **Version** : v1.0
 
 ## 1. Stack technique
-**Framework** : Hugo
+**Framework** : Hugo >= 0.146
 
 **Build tool** : Node.js + npm
 
@@ -31,7 +31,7 @@ Document de spécifications techniques : présente la stack technique, la struct
 
 **Fonctionnalités** :
   - Le logo et le nom du site sont cliquables et redirigent vers la page d'accueil
-  - Le menu de navigation contient des liens vers les pages principales (Journal, Actualités, À propos)
+  - Le menu de navigation contient des liens vers les pages principales (Le Fil éco, Actualités, À propos)
 
 ### 2.2 Footer
 
@@ -65,7 +65,7 @@ Document de spécifications techniques : présente la stack technique, la struct
 **Contenu** :
   - Hero (contenu exact à définir)
   - Section "Le Fil éco"
-    - aperçu des dernières chroniques du journal,
+    - aperçu des dernières chroniques du fil d'infos,
     - avec un lien vers la page Le Fil éco
   - Section "Actualités"
     - aperçu des dernières actualités,
@@ -78,12 +78,12 @@ Document de spécifications techniques : présente la stack technique, la struct
     - adresse physique et email de contact,
     - avec un lien vers la page À propos
 
-### Page 2 — Le Fil éco (ou Journal ou un autre nom à définir)
+### Page 2 — Le Fil éco
 
 **Contenu** :
   - En-tête avec le titre de la page et un sous-titre
   - Système de filtrage des chroniques
-  - Liste des chroniques du journal
+  - Liste des chroniques du fil d'infos
 
 **Fonctionnalités** :
   - Les chroniques sont cliquables et redirigent vers la page de la chronique

@@ -21,8 +21,8 @@ Document de cadrage produit : présente le contexte du projet, le public cible, 
 ## 3. Périmètre
 **Inclus** :
   - Page d'accueil
-  - Pages du journal (chroniques, actualités, conseils)
-  - Pages des événements (grandes dates et événements)
+  - Pages du fil d'infos (chroniques, actualités, conseils)
+  - Pages des actualités (grandes dates, événements et activités du club)
   - Page sur le club (valeur, mission, équipe, local)
 
 **Exclu (pour l'instant)** :

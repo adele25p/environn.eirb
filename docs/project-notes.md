@@ -13,7 +13,6 @@ Document transversal : présente les idées d'évolutions futures, les questions
 ## 2. Questions ouvertes
 - [ ] Design du logo
 - [ ] Contenu exact et design du Hero
-- [ ] Nom de la page Le Fil éco à définir (Journal, Le Fil, Le Blog, etc.)
 - [ ] Types de filtrage à définir pour la page Le Fil éco (par catégorie, par type, par date, etc.)
 
 ## 3. Notes diverses
