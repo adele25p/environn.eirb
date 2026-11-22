@@ -1,0 +1,11 @@
+{{- $actualities := where site.RegularPages "Section" "actualities" -}}
+<section class="border-t border-border py-20 sm:py-28">
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    {{ partial "components/section-header.html" (dict "icon" "leaf" "label" "La vie du club" "title" "Les dernières nouvelles" "description" "Retrouve les annonces et les récits des actions menées par le club.") }}
+    <div class="mt-12 grid gap-5 sm:grid-cols-2">
+      {{ range $actualities }}
+        {{ partial "components/cards/actuality-card.html" . }}
+      {{ else }}<p class="text-muted-foreground">Aucune actualité pour l’instant.</p>{{ end }}
+    </div>
+  </div>
+</section>

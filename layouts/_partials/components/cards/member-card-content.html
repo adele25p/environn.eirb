@@ -1,0 +1,17 @@
+{{- $photo := false -}}
+{{- with .photo -}}
+  {{- with resources.Get . -}}{{- $photo = . -}}{{- end -}}
+{{- end -}}
+<div class="p-5 text-center sm:p-6">
+  <div class="relative mx-auto h-24 w-24 overflow-hidden rounded-full border-2 border-accent/20 bg-secondary sm:h-28 sm:w-28">
+    {{ if $photo }}
+      {{ $img := $photo.Fill "224x224 q85" }}
+      <img src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}" alt="{{ .name }}" loading="lazy" class="h-full w-full object-cover">
+    {{ else }}
+      <div class="flex h-full w-full items-center justify-center font-heading text-3xl font-bold text-accent">{{ substr .name 0 1 | upper }}</div>
+    {{ end }}
+  </div>
+  <h3 class="mt-4 font-heading text-lg leading-tight font-bold">{{ .name }}</h3>
+  {{ with .role }}<span class="mt-1 block text-sm font-medium text-accent">{{ . }}</span>{{ end }}
+  {{ with .description }}<p class="mt-2 text-sm leading-relaxed text-muted-foreground">{{ . }}</p>{{ end }}
+</div>

@@ -1,13 +1,13 @@
 {{- /*
-  home.html - Home page template (equivalent of pages/Home.jsx).
+  home.html - Home page template.
   Assembles the page sections in order. Each section is a partial in
-  layouts/_partials/sections/ and carries the id targeted by the header menu
-  (#journal, #rejoindre, #equipe, #contact).
+  layouts/_partials/sections/home/ and carries the id targeted by the header menu
+  (#chronicles, #actualites, #join, #about).
 */ -}}
 {{ define "main" }}
-  {{ partial "sections/hero.html" . }}
-  {{ partial "sections/journal.html" . }}
-  {{ partial "sections/join.html" . }}
-  {{ partial "sections/team.html" . }}
-  {{ partial "sections/contact.html" . }}
+  {{ partial "sections/home/hero.html" . }}
+  {{ partial "sections/home/chronicles.html" . }}
+  {{ partial "sections/home/actualities.html" . }}
+  {{ partial "sections/home/join.html" . }}
+  {{ partial "sections/home/contact.html" . }}
 {{ end }}

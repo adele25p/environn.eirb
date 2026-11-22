@@ -1,37 +1,50 @@
 {{- /*
-  footer.html - Site footer. Port of Footer.jsx.
-  - The Telegram button only appears when params.telegramURL is set in hugo.toml.
-  - The email button points to the contact section of the home page.
+  footer.html - Site footer.
+  The contact and external links are read from data/club.yaml so the footer
+  stays in sync with the club's public information.
 */ -}}
-{{- $socialClass := "flex h-10 w-10 items-center justify-center rounded-full bg-secondary text-muted-foreground transition-all hover:-translate-y-0.5 hover:bg-accent hover:text-accent-foreground" -}}
-<footer class="border-t border-border">
-  <div class="mx-auto max-w-6xl px-5 py-12 sm:px-8">
-    <div class="flex flex-col items-center justify-between gap-6 sm:flex-row">
+{{- $club := hugo.Data.club -}}
+<footer class="mt-16 bg-primary text-primary-foreground">
+  <div class="mx-auto max-w-6xl px-5 py-8 sm:px-8 sm:py-10">
+    <div class="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+      <div class="flex flex-col gap-8 sm:flex-row sm:items-center">
+        <a href="{{ site.Home.RelPermalink }}" class="inline-flex items-center gap-3" aria-label="Retour à l'accueil">
+          {{ partial "ui/logo.html" (dict
+            "size" 55
+            "logo" "logo_club"
+            "label" $club.name
+          ) }}
+        </a>
 
-      {{- /* Identity */}}
-      <div class="flex items-center gap-3 text-center sm:text-left">
-        <div class="flex h-9 w-9 items-center justify-center rounded-full bg-accent/10">
-          <span class="font-heading font-bold text-accent">E</span>
-        </div>
-        <div>
-          <div class="font-heading font-bold">Environn’eirb</div>
-          <div class="text-xs text-muted-foreground">ENSEIRB-MATMECA · Bordeaux</div>
-        </div>
+        {{ with $club.school_url }}
+          <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center border-l-0 border-primary-foreground/20 transition-opacity hover:opacity-80 sm:border-l sm:pl-8" aria-label="Site de {{ $club.institution }}">
+            {{ partial "ui/logo.html" (dict
+              "size" 55
+              "logo" "logo_institution"
+              "label" $club.institution
+              "class" "brightness-0 invert"
+            ) }}
+          </a>
+        {{ end }}
       </div>
 
-      {{- /* Social links */}}
-      <div class="flex items-center gap-3">
-        {{ with site.Params.telegramURL }}
-          <a href="{{ . }}" aria-label="Telegram" class="{{ $socialClass }}">{{ partial "icon.html" (dict "name" "message-circle") }}</a>
-        {{ end }}
-        <a href="{{ site.Home.RelPermalink }}#contact" aria-label="Email" class="{{ $socialClass }}">{{ partial "icon.html" (dict "name" "mail") }}</a>
+      <div class="flex flex-wrap items-center gap-x-5 gap-y-3 text-sm">
+          {{ with $club.telegram_info_url }}
+            <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 transition-colors hover:text-accent-foreground" aria-label="Consulter les informations sur Telegram">
+              {{ partial "ui/icon.html" (dict "name" "send" "class" "h-4 w-4 text-accent") }} Canal d'informations
+            </a>
+          {{ end }}
+          {{ with $club.email }}
+            <a href="mailto:{{ . }}" class="inline-flex items-center gap-2 transition-colors hover:text-accent-foreground">
+              {{ partial "ui/icon.html" (dict "name" "mail" "class" "h-4 w-4 text-accent") }} {{ . }}
+            </a>
+          {{ end }}
       </div>
     </div>
 
-    {{- /* Legal line */}}
-    <div class="mt-8 flex flex-col justify-between gap-2 border-t border-border pt-6 text-center text-xs text-muted-foreground sm:flex-row sm:text-left">
-      <span>© {{ now.Year }} Environn’eirb</span>
-      <span>Site léger · bas carbone · fait avec 🌿</span>
+    <div class="mt-8 flex flex-col gap-1 border-t border-primary-foreground/15 pt-5 text-xs text-primary-foreground/60 sm:flex-row sm:justify-between">
+      <p>© {{ now.Year }} {{ $club.name }}. Tous droits réservés.</p>
+      <p>Réalisé par Adèle, avec la contribution des membres de {{ $club.name }}.</p>
     </div>
   </div>
 </footer>

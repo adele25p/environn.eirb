@@ -4,7 +4,7 @@
   file. To add a script (e.g. the scroll reveal), put it in assets/js/ and
   add its path to the list.
 */ -}}
-{{- $files := slice "js/header.js" "js/reveal.js" "js/articles-filter.js" "js/contact-form.js" -}}
+{{- $files := slice "js/header.js" "js/reveal.js" "js/actualities.js" "js/back-to-top.js" -}}
 {{- $bundle := slice -}}
 {{- range $files -}}
   {{- with resources.Get . }}{{ $bundle = $bundle | append . }}{{ end -}}

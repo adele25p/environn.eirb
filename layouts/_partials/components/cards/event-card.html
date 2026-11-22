@@ -1,0 +1,6 @@
+{{- $event := .event -}}
+<article class="reveal-up rounded-3xl border border-border bg-background p-6"{{ with .delay }} style="transition-delay: {{ . }}ms"{{ end }}>
+  <time class="text-xs uppercase tracking-wider text-accent" datetime="{{ $event.date }}">{{ dateFormat "02/01/2006" $event.date }}</time>
+  {{ partial "components/typography/card-title.html" $event.title }}
+  <p class="mt-2 text-sm leading-relaxed text-muted-foreground">{{ $event.description }}</p>
+</article>

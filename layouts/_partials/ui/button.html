@@ -1,0 +1,21 @@
+{{- /*
+  button.html - Structural button/link element.
+
+  Parameters:
+    type       optional - button type (default "button")
+    href       optional - renders an anchor when provided
+    class      optional - additional Tailwind classes
+    attrs      optional - additional HTML attributes as a dictionary
+    content    required - rendered button content
+*/ -}}
+{{- $type := .type | default "button" -}}
+{{- $class := .class | default "" -}}
+{{- $attributes := "" -}}
+{{- range $name, $value := (.attrs | default dict) -}}
+  {{- $attributes = printf `%s %s="%s"` $attributes $name $value -}}
+{{- end -}}
+{{- if .href -}}
+  <a href="{{ .href }}"{{ with .id }} id="{{ . }}"{{ end }} class="{{ $class }}"{{ $attributes | safeHTMLAttr }}>{{ .content | safeHTML }}</a>
+{{- else -}}
+  <button type="{{ $type }}"{{ with .id }} id="{{ . }}"{{ end }} class="{{ $class }}"{{ $attributes | safeHTMLAttr }}>{{ .content | safeHTML }}</button>
+{{- end -}}

@@ -36,8 +36,8 @@ Document de spécifications techniques : présente la stack technique, la struct
 ### 2.2 Footer
 
 **Contenu** :
-  - Liens vers les réseaux sociaux (canal Telegram, chat Telegram)
-  - Logo de l'école (ENSEIRB-MATMECA Bordeaux INP)
+  - Liens vers les réseaux sociaux (canal Telegram, email)
+  - Logos (du club et de l'ENSEIRB-MATMECA Bordeaux INP)
   - Copyright © 2026 Environn'eirb. All rights reserved.
   - Nom des auteurs et contributeurs du projet (Réalisé par Adèle, ... avec la contribution de ...)
 

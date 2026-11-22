@@ -6,42 +6,34 @@ locale = 'fr'
 defaultContentLanguage = 'fr'
 title = 'Environn’eirb'
 
-# Site-wide parameters, available in templates as site.Params.*
-[params]
-  tagline = 'L’écologie, sans prise de tête'
-  description = "Environn’eirb — l’écologie, sans prise de tête. Association étudiante de sensibilisation au bien-vivre en respectant notre environnement, à l’ENSEIRB-MATMECA."
-  telegramURL = 'https://t.me/+z53Z2Hva0zwyYTE0'
-  # Contact form (see layouts/_partials/sections/contact.html).
-  # Default service: Web3Forms. Get a free access key at https://web3forms.com
-  # (enter the club mailbox: messages are delivered there), then paste it below.
-  # The key is public by design. To use Formspree instead, set contactFormAction
-  # to your https://formspree.io/f/xxxx URL and leave the key empty.
-  contactFormAction = 'https://api.web3forms.com/submit'
-  contactFormAccessKey = ''
-
-# Main navigation (header). Rendered by layouts/_partials/header.html.
+# Main navigation. Rendered by layouts/_partials/header.html.
 # Anchors point to the sections of the home page. Order is set by weight.
 [[menus.main]]
-  name = 'Journal'
-  url = '/#journal'
+  name = 'Le Fil éco'
+  url = '/#chronicles'
   weight = 10
 
 [[menus.main]]
-  name = 'Rejoindre'
-  url = '/#rejoindre'
+  name = 'Actualités'
+  url = '/#actualites'
   weight = 20
 
 [[menus.main]]
-  name = 'Équipe'
-  url = '/#equipe'
+  name = 'Nous rejoindre'
+  url = '/#join'
   weight = 30
+
+[[menus.main]]
+  name = 'À propos'
+  url = '/#about'
+  weight = 40
 
 [[menus.main]]
   name = 'Contact'
   url = '/#contact'
-  weight = 40
+  weight = 50
 
-# --- Tailwind CSS v4 integration (see layouts/_partials/css.html) ---
+# --- Tailwind CSS v4 integration (see layouts/_partials/head.html) ---
 # Hugo writes hugo_stats.json (the list of HTML classes in use) on every build.
 # Tailwind reads it to generate only the CSS that is actually needed.
 [build.buildStats]

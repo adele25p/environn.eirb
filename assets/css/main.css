@@ -1,12 +1,12 @@
 /* main.css - Single stylesheet of the website (Tailwind CSS v4)
- * Compiled by Hugo through css.TailwindCSS (see layouts/_partials/css.html).
+ * Compiled by Hugo through css.TailwindCSS (see layouts/_partials/head.html).
  *
  * Contents:
  *  - :root       HSL color variables (green "eco" palette)
  *  - @theme      replaces tailwind.config.js (colors, radii, fonts)
  *  - base        global element styles
- *  - @utility    custom utilities (font-mono-data, ping-dot)
- *  - components  .reveal-up (scroll animation) and .prose-eco (article body)
+ *  - @utility    custom utilities (ping-dot)
+ *  - components  .reveal-up (scroll animation) and .prose-eco (chronicle body)
  */
 
 @import "tailwindcss";
@@ -68,13 +68,12 @@
   --radius-sm: calc(var(--radius) + 4px);
 }
 
-/* Fonts: font-heading, font-body, font-display, font-mono utilities.
+/* Fonts: font-heading, font-body and font-display utilities.
  * The font files are loaded in layouts/_partials/head.html */
 @theme {
   --font-heading: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
 /* --- Base styles --- */
@@ -101,12 +100,6 @@
 }
 
 /* --- Custom utilities --- */
-
-/* "Data" text: monospace font with slight letter spacing */
-@utility font-mono-data {
-  font-family: var(--font-mono);
-  letter-spacing: 0.02em;
-}
 
 /* Pulsing dot (e.g. the "live" indicator in the hero) */
 @utility ping-dot {
@@ -145,7 +138,7 @@
     }
   }
 
-  /* Article body typography: the Markdown rendered by Hugo is wrapped
+  /* Chronicle body typography: the Markdown rendered by Hugo is wrapped
    * in <div class="prose-eco"> */
   .prose-eco h2 {
     font-family: var(--font-heading);

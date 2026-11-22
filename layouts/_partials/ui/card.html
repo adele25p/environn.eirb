@@ -1,0 +1,16 @@
+{{- /*
+  card.html - Structural card container.
+
+  Parameters:
+    tag     optional - "a" for linked cards, "div" otherwise
+    href    optional - link destination when tag is "a"
+    class   optional - additional Tailwind classes
+    content required - rendered card content
+*/ -}}
+{{- $tag := .tag | default "div" -}}
+{{- $class := .class | default "" -}}
+{{- if eq $tag "a" -}}
+  <a href="{{ .href }}" class="{{ $class }}">{{ .content | safeHTML }}</a>
+{{- else -}}
+  <div class="{{ $class }}">{{ .content | safeHTML }}</div>
+{{- end -}}

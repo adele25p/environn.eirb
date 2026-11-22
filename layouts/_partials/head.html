@@ -6,19 +6,30 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>{{ if .IsHome }}{{ site.Title }} — {{ site.Params.tagline }}{{ else if eq .Kind "404" }}Page introuvable | {{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
+<title>{{ if .IsHome }}{{ site.Title }} — {{ hugo.Data.club.tagline }}{{ else if eq .Kind "404" }}Page introuvable | {{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
 {{ if eq .Kind "404" }}<meta name="robots" content="noindex">{{ end }}
-<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Params.synthesis }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}{{ end }}">
+<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ hugo.Data.club.description }}{{ end }}">
 
-{{- /* Enable the favicon link as soon as static/favicon.svg is provided. */ -}}
-{{ if fileExists "static/favicon.svg" }}
 <link rel="icon" type="image/svg+xml" href="{{ "favicon.svg" | relURL }}">
-{{ end }}
 
-{{- /* Google Fonts: Space Grotesk, Inter, JetBrains Mono */ -}}
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+{{- /* Self-hosted fonts: Space Grotesk, Inter */ -}}
+<style>
+  @font-face {
+    font-family: "Space Grotesk";
+    font-style: normal;
+    font-weight: 400 700;
+    font-display: swap;
+    src: url("{{ "fonts/space-grotesk-latin.woff2" | relURL }}") format("woff2");
+  }
+
+  @font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400 600;
+    font-display: swap;
+    src: url("{{ "fonts/inter-latin.woff2" | relURL }}") format("woff2");
+  }
+</style>
 
 {{- /* Adds the "js" class on <html>: enables the .reveal-up animations */ -}}
 <script>document.documentElement.classList.add('js')</script>
@@ -26,7 +37,20 @@
 {{- /*
   The CSS is built deferred (templates.Defer): Tailwind must wait until every
   page is rendered to know the full set of classes in use.
+  Development keeps the stylesheet readable; production fingerprints it for
+  browser caching.
 */ -}}
 {{ with (templates.Defer (dict "key" "global")) }}
-  {{ partial "css.html" . }}
+  {{ with resources.Get "css/main.css" }}
+    {{ $opts := dict "minify" (not hugo.IsDevelopment) }}
+    {{ with . | css.TailwindCSS $opts }}
+      {{ if hugo.IsDevelopment }}
+        <link rel="stylesheet" href="{{ .RelPermalink }}">
+      {{ else }}
+        {{ with . | fingerprint }}
+          <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
 {{ end }}

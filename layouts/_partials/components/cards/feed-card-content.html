@@ -1,0 +1,6 @@
+<div class="flex items-center justify-between">
+  <time class="text-xs text-muted-foreground" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02/01/2006" }}</time>
+</div>
+
+<div class="mt-4 transition-colors group-hover:text-accent">{{ partial "components/typography/card-title.html" .Title }}</div>
+<p class="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{{ .Params.synthesis }}</p>

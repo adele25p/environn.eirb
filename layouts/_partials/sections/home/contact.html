@@ -1,0 +1,35 @@
+{{- /* contact.html - "Contact" section of the home page (#contact). */ -}}
+{{- $club := hugo.Data.club -}}
+<section id="contact" class="py-20 sm:py-28">
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    {{ partial "components/section-header.html" (dict "icon" "mail" "label" "Contact" "title" "Le club de sensibilisation" "titleAccent" "à l’écologie" "description" "?") }}
+    <div class="mt-10 grid gap-6 rounded-3xl border border-border bg-card p-6 sm:grid-cols-2 sm:p-8">
+            <div class="space-y-4 text-sm text-muted-foreground">
+                <p class="flex gap-3">
+            <span class="text-accent">{{ partial "ui/icon.html" (dict "name" "map-pin") }}</span>
+            <span>Local {{ $club.room }}<br>{{ $club.street }}<br>{{ $club.po_box }}<br>{{ $club.postal_code }} {{ $club.city }}</span>
+        </p>
+        <p class="flex gap-3">
+            <span class="text-accent">
+                {{ partial "ui/icon.html" (dict "name" "clock") }}
+            </span>
+            <span>Horaires : {{ $club.opening_hours }}</span>
+        </p>
+        <p class="flex gap-3">
+            <span class="text-accent">
+                {{ partial "ui/icon.html" (dict "name" "mail") }}
+            </span>
+            <a href="mailto:{{ $club.email }}" class="hover:text-accent">{{ $club.email }}</a>
+        </p>
+    </div>
+    {{ with $club.access_map }}
+    {{ with resources.Get . }}
+    <img src="{{ .RelPermalink }}" alt="Plan d’accès au local de {{ $club.name }}" class="rounded-2xl object-cover">{{ end }}{{ else }}<div class="flex min-h-40 items-center justify-center rounded-2xl bg-secondary p-6 text-center text-sm text-muted-foreground">Plan d’accès bientôt disponible.</div>{{ end }}</div></div>
+    <p class="reveal-up mt-10 text-center">
+      {{ partial "components/buttons/link-button.html" (dict
+        "href" ((site.GetPage "/about").RelPermalink)
+        "content" (printf `Découvrir le club %s` (partial "ui/icon.html" (dict "name" "arrow-right")))
+      ) }}
+    </p>
+  </div>
+</section>

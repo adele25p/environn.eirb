@@ -1,0 +1,42 @@
+{{- /*
+  section-header.html - Reusable heading for content sections.
+
+  Usage:
+    {{ partial "components/section-header.html" (dict
+      "icon" "users"
+      "label" "L’équipe"
+      "title" "Une équipe"
+      "titleAccent" "qui se construit."
+      "description" "Une description facultative."
+    ) }}
+
+  Parameters:
+    label       optional - label displayed above the title
+    icon        optional - icon name passed to ui/icon.html
+    title       required - main title
+    titleAccent optional - muted continuation displayed on a new line
+    description optional - supporting text
+*/ -}}
+{{- $icon := .icon -}}
+{{- $label := .label -}}
+{{- $title := .title -}}
+{{- $titleAccent := .titleAccent -}}
+{{- $description := .description -}}
+
+<div class="reveal-up">
+  {{- if $label }}
+    <span class="inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 text-sm font-medium text-accent">
+      {{ partial "components/typography/eyebrow.html" (dict "icon" $icon "label" $label) }}
+    </span>
+  {{- end }}
+
+  {{- if $title }}
+    {{ partial "components/typography/section-title.html" (dict "label" $label "title" $title "accent" $titleAccent) }}
+  {{- end }}
+
+  {{- if $description }}
+    <p class="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
+      {{ $description }}
+    </p>
+  {{- end }}
+</div>

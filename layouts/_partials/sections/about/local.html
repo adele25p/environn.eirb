@@ -1,0 +1,54 @@
+{{- /*
+  local.html - Campus location and opening information for the about page.
+
+  The access map is optional: a placeholder is displayed when no asset is
+  configured in data/club.yaml.
+*/ -}}
+{{- $club := hugo.Data.club -}}
+<section class="py-20 sm:py-28">
+    <div class="mx-auto max-w-6xl px-5 sm:px-8">
+        {{ partial "components/section-header.html" (dict
+            "icon" "map-pin"
+            "label" "Le local"
+            "title" "Retrouve-nous"
+            "titleAccent" "sur le campus."
+            "description" "Le local est un espace pour se rencontrer, préparer les actions et échanger autour de l’écologie."
+        ) }}
+        <div class="mt-10 grid gap-6 rounded-3xl border border-border bg-card p-6 sm:grid-cols-2 sm:p-8">
+            <div class="space-y-4 text-sm text-muted-foreground">
+                <p class="flex gap-3">
+                    <span class="text-accent">
+                        {{ partial "ui/icon.html" (dict "name" "map-pin") }}
+                    </span>
+                    <span>
+                        Local {{ $club.room }}<br>
+                        {{ $club.street }}<br>
+                        {{ $club.po_box }}<br>
+                        {{ $club.postal_code }} {{ $club.city }}
+                    </span>
+                </p>
+                <p class="flex gap-3">
+                    <span class="text-accent">
+                        {{ partial "ui/icon.html" (dict "name" "clock") }}
+                    </span>
+                    <span>Horaires : {{ $club.opening_hours }}</span>
+                </p>
+                <p class="flex gap-3">
+                    <span class="text-accent">
+                        {{ partial "ui/icon.html" (dict "name" "mail") }}
+                    </span>
+                    <a href="mailto:{{ $club.email }}" class="hover:text-accent">{{ $club.email }}</a>
+                </p>
+            </div>
+            {{ with $club.access_map }}
+                {{ with resources.Get . }}
+                    <img src="{{ .RelPermalink }}" alt="Plan d’accès au local de {{ $club.name }}" class="rounded-2xl object-cover">
+                {{ end }}
+            {{ else }}
+                <div class="flex min-h-40 items-center justify-center rounded-2xl bg-secondary p-6 text-center text-sm text-muted-foreground">
+                    Plan d’accès bientôt disponible.
+                </div>
+            {{ end }}
+        </div>
+    </div>
+</section>

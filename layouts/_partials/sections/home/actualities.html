@@ -1,0 +1,17 @@
+{{- $events := first 3 hugo.Data.events -}}
+<section id="actualites" class="bg-secondary/50 py-20 sm:py-28">
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    {{ partial "components/section-header.html" (dict "icon" "calendar" "label" "Actualités" "title" "Les prochains rendez-vous" "titleAccent" "du club." "description" "Événements, ateliers et nouvelles de la vie d’Environn’eirb.") }}
+    <div class="mt-12 grid gap-5 sm:grid-cols-3">
+      {{ range $i, $event := $events }}
+        {{ partial "components/cards/event-card.html" (dict "event" $event "delay" (mul $i 90)) }}
+      {{ else }}<p class="text-muted-foreground">Les prochains rendez-vous arrivent bientôt.</p>{{ end }}
+    </div>
+    <p class="reveal-up mt-10 text-center">
+      {{ partial "components/buttons/link-button.html" (dict
+        "href" "/actualities/"
+        "content" (printf `Voir toutes les actualités %s` (partial "ui/icon.html" (dict "name" "arrow-right")))
+      ) }}
+    </p>
+  </div>
+</section>

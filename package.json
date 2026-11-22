@@ -4,7 +4,7 @@
   "description": "Hugo website for Environn'eirb. Node is only used for Tailwind CSS.",
   "scripts": {
     "dev": "hugo server",
-    "build": "hugo --gc --minify"
+    "build": "hugo --gc --minify --cleanDestinationDir"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.0.0",

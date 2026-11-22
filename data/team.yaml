@@ -5,7 +5,10 @@
 #   role         required - role in the club (e.g. Communication, Design, Dev)
 #   photo        optional - image in assets/, e.g. images/team/prenom.jpg
 #                (cropped to a square; the initial is shown when missing)
-#   description  optional - short sentence to humanize the member
+#   description  required - short sentence describing the member's role in the club
 - name: "Adèle"
   role: "Présidente"
-  description: "Coordonne l’association, assure une veille sur les enjeux écologiques et maintient le site à jour."
+  description: "Coordonne le club, assure une veille sur les enjeux écologiques et maintient le site à jour."
+- name: "Karan"
+  role: "Secrétaire"
+  description: "Garde une trace des réunions et des projets du club."

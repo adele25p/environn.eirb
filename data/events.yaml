@@ -1,0 +1,3 @@
+# events.yaml - Calendar events for the club.
+# Each event must contain: title, date, location, type and description.
+[]

@@ -1,0 +1,38 @@
+{{- /*
+  list.html (chronicles) - Page listing every chronicle (/chronicles/).
+*/ -}}
+{{ define "main" }}
+{{- $pages := .Pages -}}
+
+<section class="{{ if not $pages }}flex min-h-[calc(100vh-4rem)] sm:min-h-[calc(100vh-5rem)]{{ end }} pt-32 pb-12 sm:pt-36 sm:pb-16">
+  <div class="{{ if not $pages }}flex flex-1 flex-col{{ end }} mx-auto w-full max-w-6xl px-5 sm:px-8">
+
+    <a href="{{ site.Home.RelPermalink }}" class="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-accent">
+      {{ partial "ui/icon.html" (dict "name" "arrow-left") }}
+      Retour à l’accueil
+    </a>
+
+    <div class="reveal-up">
+      <span class="mt-6 inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 text-sm font-medium text-accent">
+        {{ partial "ui/icon.html" (dict "name" "leaf" "class" "h-3.5 w-3.5") }}
+        Le Fil éco
+      </span>
+      <div class="mt-5">{{ partial "components/typography/page-title.html" .Title }}</div>
+      <p class="mt-4 max-w-xl text-lg leading-relaxed text-muted-foreground">{{ .Description }}</p>
+    </div>
+
+    {{ if $pages }}
+      <div id="chronicles-grid" class="mt-12 grid gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+        {{ range $i, $page := $pages }}
+          <div class="reveal-up h-full" style="transition-delay: {{ mul (mod $i 3) 90 }}ms">
+            {{ partial "components/cards/chronicle-card.html" $page }}
+          </div>
+        {{ end }}
+      </div>
+    {{ else }}
+      <p class="flex flex-1 items-center justify-center text-center text-muted-foreground">Aucune chronique pour l’instant. Reviens vite ! 🌱</p>
+    {{ end }}
+
+  </div>
+</section>
+{{ end }}

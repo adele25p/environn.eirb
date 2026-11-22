@@ -1,0 +1,27 @@
+# club.yaml - General information about the club.
+# Keep fields grouped by identity, location, contact and external links.
+
+# Identity
+name: "Environn’eirb"
+tagline: "L’écologie, sans prise de tête"
+description: "Club de sensibilisation au bien-vivre en respectant notre environnement (aka l’écologie) de l’ENSEIRB-MATMECA."
+logo_club: "images/logos/logo-enseirb-matmeca.svg" # Image temporaire, a remplacer par "images/logos/logo_environneirb.svg" lors de la disponibilité du logo définitif.
+
+# Location
+institution: "ENSEIRB-MATMECA"
+logo_institution: "images/logos/logo-enseirb-matmeca.svg"
+room: "P032"
+street: "1 avenue du Dr Albert Schweitzer"
+po_box: "B.P. 99"
+postal_code: "33402"
+city: "Talence Cedex"
+access_map: "" # Image in assets/, for example "images/local/plan-acces.png".
+opening_hours: "À définir" # Update this when regular or occasional hours are confirmed.
+
+# Contact
+email: "environneirb@enseirb-matmeca.fr"
+
+# External links
+school_url: "https://enseirb-matmeca.bordeaux-inp.fr/fr/une-vie-associative-riche-et-dynamique-lenseirb-matmeca"
+telegram_info_url: "https://t.me/environneirb_infos"
+telegram_join_url: "https://t.me/+z53Z2Hva0zwyYTE0"

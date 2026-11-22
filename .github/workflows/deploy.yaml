@@ -1,5 +1,5 @@
 # deploy.yaml - Build the Hugo site and publish it on GitHub Pages
-# Runs on every push to main, once a day (so articles scheduled for a future
+# Runs on every push to main, once a day (so chronicles scheduled for a future
 # date go live) and on demand from the Actions tab. The baseURL of hugo.toml
 # is overridden at build time with the GitHub Pages address.
 

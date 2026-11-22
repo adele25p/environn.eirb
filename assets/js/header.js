@@ -36,4 +36,11 @@
   menu.addEventListener('click', (event) => {
     if (event.target.closest('a')) setOpen(false);
   });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !menu.hidden) {
+      setOpen(false);
+      button.focus();
+    }
+  });
 })();

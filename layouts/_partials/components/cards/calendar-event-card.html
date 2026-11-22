@@ -1,0 +1,12 @@
+{{- $event := .event -}}
+<article class="reveal-up flex flex-col justify-between gap-5 rounded-3xl border border-border bg-card p-6 sm:flex-row sm:items-center" style="transition-delay: {{ .delay }}ms">
+  <div>
+    <time class="text-xs uppercase tracking-wider text-accent" datetime="{{ $event.date }}">{{ dateFormat "02/01/2006" $event.date }}</time>
+    <h2 class="mt-2 font-heading text-xl font-bold">{{ $event.title }}</h2>
+    <p class="mt-2 text-sm text-muted-foreground">{{ $event.location }}</p>
+  </div>
+  {{ partial "components/buttons/outline-button.html" (dict
+    "attrs" (dict "data-event-dialog" (printf "event-%d" .index) "aria-haspopup" "dialog")
+    "content" (printf `Détails %s` (partial "ui/icon.html" (dict "name" "arrow-right")))
+  ) }}
+</article>

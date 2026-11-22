@@ -14,9 +14,9 @@
     {{- /* Logo + site name. The logo shrinks slightly once scrolled. */}}
     <a href="{{ site.Home.RelPermalink }}" class="flex items-center gap-3">
       <span class="block origin-left transition-transform duration-300 group-data-[scrolled=true]:scale-[0.86]">
-        {{ partial "logo-frame.html" (dict "size" 44) }}
+        {{ partial "ui/logo.html" (dict "size" 30) }}
       </span>
-      <span class="font-heading text-lg font-bold tracking-tight">Environn<span class="text-accent">’</span>eirb</span>
+      <span class="font-heading text-lg font-bold tracking-tight">{{ hugo.Data.club.name }}</span>
     </a>
 
     {{- /* Desktop navigation */}}
@@ -27,10 +27,15 @@
     </nav>
 
     {{- /* Mobile menu button: the two icons are swapped by header.js */}}
-    <button id="menu-toggle" type="button" class="-mr-2 p-2 text-foreground sm:hidden" aria-label="Menu" aria-controls="mobile-menu" aria-expanded="false">
-      <span data-icon="open">{{ partial "icon.html" (dict "name" "menu" "class" "h-5 w-5") }}</span>
-      <span data-icon="close" hidden>{{ partial "icon.html" (dict "name" "x" "class" "h-5 w-5") }}</span>
-    </button>
+    {{ partial "ui/button.html" (dict
+      "id" "menu-toggle"
+      "class" "-mr-2 p-2 text-foreground sm:hidden"
+      "attrs" (dict "aria-label" "Menu" "aria-controls" "mobile-menu" "aria-expanded" "false")
+      "content" (printf `<span data-icon="open">%s</span><span data-icon="close" hidden>%s</span>`
+        (partial "ui/icon.html" (dict "name" "menu" "class" "h-5 w-5"))
+        (partial "ui/icon.html" (dict "name" "x" "class" "h-5 w-5"))
+      )
+    ) }}
   </div>
 
   {{- /* Mobile navigation (hidden until the button is clicked) */}}

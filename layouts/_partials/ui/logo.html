@@ -1,0 +1,28 @@
+{{- /*
+  logo.html - Shared logo renderer.
+  The configured logo keeps its natural aspect ratio and is sized by height.
+
+  Usage:
+    {{ partial "ui/logo.html" (dict "size" 44) }}
+
+  Parameters (all optional):
+    size       logo height in px (default 96)
+    logo       data/club.yaml logo field (default logo_club)
+    showLabel  true to display the club name under the logo
+    imageClass extra classes for the image
+    class      extra Tailwind classes for the outer element
+*/ -}}
+{{- $size := .size | default 96 -}}
+{{- $logoKey := .logo | default "logo_club" -}}
+{{- $logoPath := index hugo.Data.club $logoKey -}}
+{{- $label := .label | default hugo.Data.club.name -}}
+<div class="relative flex shrink-0 items-center {{ .class }}" style="height: {{ $size }}px" role="img" aria-label="Logo {{ $label }}">
+  {{ with $logoPath }}
+    {{ with resources.Get . }}
+      <img src="{{ .RelPermalink }}" alt="" class="block h-full w-auto {{ $.imageClass }}">
+    {{ end }}
+  {{ end }}
+  {{ if .showLabel }}
+    <span class="absolute -bottom-5 whitespace-nowrap text-[9px] tracking-[0.3em] text-accent">{{ $label }}</span>
+  {{ end }}
+</div>

@@ -1,0 +1,22 @@
+{{- /*
+  mission.html - Mission, vision and values section for the about page.
+
+  The section heading uses the club description from data/club.yaml so that
+  the presentation remains consistent with the site's shared club data.
+*/ -}}
+<section class="pb-20 sm:pb-28">
+    <div class="mx-auto max-w-6xl px-5 sm:px-8">
+        {{ partial "components/section-header.html" (dict
+            "icon" "leaf"
+            "label" "Le club"
+            "title" "L’écologie"
+            "titleAccent" "sans prise de tête."
+            "description" hugo.Data.club.description
+        ) }}
+        <div class="mt-10 grid gap-5 sm:grid-cols-3">
+            {{ partial "components/cards/value-card.html" (dict "title" "Notre mission" "description" "Partager des informations accessibles et donner envie d’agir, sans culpabiliser.") }}
+            {{ partial "components/cards/value-card.html" (dict "title" "Notre vision" "description" "Faire du campus un lieu où les habitudes durables deviennent simples et collectives.") }}
+            {{ partial "components/cards/value-card.html" (dict "title" "Nos valeurs" "description" "Bienveillance, pédagogie, curiosité et plaisir de construire ensemble.") }}
+        </div>
+    </div>
+</section>
