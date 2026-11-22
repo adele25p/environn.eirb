@@ -1,5 +1,5 @@
 {
-  "name": "environn-eirb",
+  "name": "environn-eirb-fr",
   "private": true,
   "description": "Hugo website for Environn'eirb. Node is only used for Tailwind CSS.",
   "scripts": {
