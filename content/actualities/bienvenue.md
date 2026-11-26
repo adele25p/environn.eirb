@@ -1,6 +1,7 @@
 ---
 title: "Bienvenue sur le site d’Environn’eirb"
 date: 2026-01-15
+draft: false
 description: "Retrouve ici les actions du club, les rendez-vous à venir et les nouvelles de l’équipe."
 ---
 

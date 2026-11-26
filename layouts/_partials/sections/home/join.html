@@ -1,11 +1,9 @@
 {{- /*
   join.html - "Nous rejoindre" section of the home page (#join).
   Port of JoinHub.jsx. The role cards come from data/join_roles.yaml.
-  The Telegram block reads club.telegram_join_url from data/club.yaml: when it is
-  empty, the button is replaced by a "Bientôt disponible" badge instead of a
-  dead link.
+  The Telegram invitation is redirected through Eirbware Protect so its URL
+  stays out of the public site source and is only returned after CAS login.
 */ -}}
-{{- $telegram := hugo.Data.club.telegram_join_url -}}
 {{- $club := hugo.Data.club -}}
 <section id="join" class="bg-secondary/50 py-20 sm:py-28">
   <div class="mx-auto max-w-6xl px-5 sm:px-8">
@@ -31,20 +29,15 @@
           <div>
             <h3 class="font-heading text-xl font-bold">Rejoins {{ $club.name }} sur Telegram</h3>
             <p class="mt-1 text-sm opacity-80">
-              C’est là qu’on s’organise et partage les idées.{{ if not $telegram }} Groupe bientôt en ligne.{{ end }}
+              C’est là qu’on s’organise et partage les idées.
             </p>
           </div>
         </div>
 
-        {{ if $telegram }}
-          {{ partial "components/buttons/inverse-button.html" (dict
-            "href" $telegram
-            "attrs" (dict "target" "_blank" "rel" "noopener noreferrer")
-            "content" (printf `%s Rejoindre` (partial "ui/icon.html" (dict "name" "message-circle")))
-          ) }}
-        {{ else }}
-          <span class="inline-flex items-center justify-center rounded-full bg-accent-foreground/15 px-6 py-3.5 font-medium whitespace-nowrap">Bientôt disponible</span>
-        {{ end }}
+        {{ partial "components/buttons/inverse-button.html" (dict
+          "href" "/protect/link.php?name=telegram_join"
+          "content" (printf `%s Rejoindre` (partial "ui/icon.html" (dict "name" "message-circle")))
+        ) }}
       </div>
     </div>
 

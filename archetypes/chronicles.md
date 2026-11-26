@@ -3,6 +3,7 @@
 # Used by `hugo new chronicles/my-chronicle.md`.
 title: "{{ replace .File.ContentBaseName "-" " " | title }}"
 date: {{ .Date }}
+draft: true
 synthesis: ""        # 1-2 lines shown on the cards
 author: ""           # person who wrote the chronicle
 illustrator: ""      # person who made the illustrations

@@ -37,7 +37,7 @@
                     <span class="text-accent">
                         {{ partial "ui/icon.html" (dict "name" "mail") }}
                     </span>
-                    <a href="mailto:{{ $club.email }}" class="hover:text-accent">{{ $club.email }}</a>
+                    <span>{{ $club.email_obfuscated }}</span>
                 </p>
             </div>
             {{ with $club.access_map }}

@@ -72,7 +72,7 @@ Document de spécifications techniques : présente la stack technique, la struct
     - avec un lien vers la page Actualités
   - Section "Nous rejoindre"
     - description des rôles recherchés,
-    - avec un lien vers le chat Telegram pour rejoindre l'équipe
+    - avec un lien vers le groupe Telegram pour rejoindre l'équipe
   - Section "À propos"
     - description de l'organisation,
     - adresse physique et email de contact,
@@ -115,7 +115,11 @@ Document de spécifications techniques : présente la stack technique, la struct
   - Pas de backend, pas d'API, pas de base de données pour cette version
   - Code propre, commenté, organisé en composants réutilisables
   - Images optimisées pour le web (format `AVIF` pour photos et captures d'écran, `SVG` pour logo/icônes)
+
+**Sécurité** :
   - Auto-hébergement des polices Google Fonts pour respecter le RGPD (site basé en France/UE, évite l'envoi de l'IP des visiteurs à Google)
+  - Adresse de contact stockée avec `[at]` dans `data/club.yaml`. Le `mailto:` est construit au clic par JavaScript
+  - Lien d'invitation Telegram protégé par Eirbware Protect et CAS (`/protect/link.php?name=telegram_join`); URL cible définie côté serveur via `$PROTECTED_LINKS["telegram_join"]`. Voir la [documentation CAS d'Eirbware](https://docs.eirb.fr/respo_web/connexion_cas/).
 
 **Accessibilité** : niveau **WCAG AA** visé, notamment :
   - Contraste texte/fond suffisant (ratio ≥ 4.5:1)

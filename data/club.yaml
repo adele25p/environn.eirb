@@ -19,9 +19,9 @@ access_map: "" # Image in assets/, for example "images/local/plan-acces.png".
 opening_hours: "À définir" # Update this when regular or occasional hours are confirmed.
 
 # Contact
-email: "environneirb@enseirb-matmeca.fr"
+email_obfuscated: "environneirb[at]enseirb-matmeca.fr"
 
 # External links
 school_url: "https://enseirb-matmeca.bordeaux-inp.fr/fr/une-vie-associative-riche-et-dynamique-lenseirb-matmeca"
 telegram_info_url: "https://t.me/environneirb_infos"
-telegram_join_url: "https://t.me/+z53Z2Hva0zwyYTE0"
+# The invite URL is configured server-side in Eirbware Protect as "telegram_join".

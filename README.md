@@ -26,22 +26,36 @@ The site is 100% static: `public/` is all that needs to be served, no server-sid
 
 | What | Where |
 |---|---|
-| Chronicles | `content/chronicles/` (create one with `hugo new chronicles/my-chronicle.md`) |
+| Chronicles | `content/chronicles/` |
+| Club actualities | `content/actualites/` |
+| Calendar events | `data/events.yaml` |
 | Team members | `data/team.yaml` |
-| "Join us" cards | `data/join_roles.yaml` |
 | Club information (identity, address, contact, links) | `data/club.yaml` |
-| Site title | `hugo.toml` |
-| Navigation menu | `hugo.toml` (`[[menus.main]]`) |
-| Colors, fonts, radii | `assets/css/main.css` |
-| Images (mascot, team photos, chronicle covers) | `assets/images/` |
+| Site navigation and base URL | `hugo.toml` |
+| Styles and fonts | `assets/css/` and `static/fonts/` |
+| Images | `assets/images/` |
 
-Chronicles use their `date` as their publication date. A chronicle dated in the future stays hidden until the first build on or after that date. The `draft` field is a safety switch: `draft: true` keeps a chronicle out of production even when its publication date has arrived; set it to `false` to publish it. Each chronicle also declares an `author` and optional `contributors`.
+### How to add a new chronicle
+
+1. Create a new file in `content/chronicles/` using the command `hugo new chronicles/my-chronicle.md`, replacing `my-chronicle` with a suitable name for your chronicle.
+2. Fill in the front matter, including the date, title, synthesis, author, and any other relevant information.
+3. Write the content of the chronicle in the body of the file.
+4. If the chronicle is ready for publication, set the `draft` field to `false` in the front matter.
+5. Commit and push the changes to the `main` branch.
+
+### How to add a new actuality
+
+1. Create a new file in `content/actualites/` using the command `hugo new actualites/my-actuality.md`, replacing `my-actuality` with a suitable name for your actuality.
+2. Fill in the front matter, including the title, date, description, and any other relevant information.
+3. Write the content of the actuality in the body of the file.
+4. If the actuality is ready for publication, set the `draft` field to `false` in the front matter.
+5. Commit and push the changes to the `main` branch.
 
 ## Deployment
 
 - Serve the content of `public/` at the root of `https://environn.eirb.fr/`.
 - Configure the web server to serve `/404.html` (with a 404 status) for unknown URLs.
-- Rebuild **once a day** (e.g. a cron job running the build commands above), otherwise chronicles scheduled for a future date only appear at the next manual build.
+- Rebuild and deploy on every push to `main`.
 
 ## License / Mention
 

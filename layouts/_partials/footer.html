@@ -34,10 +34,11 @@
               {{ partial "ui/icon.html" (dict "name" "send" "class" "h-4 w-4 text-accent") }} Canal d'informations
             </a>
           {{ end }}
-          {{ with $club.email }}
-            <a href="mailto:{{ . }}" class="inline-flex items-center gap-2 transition-colors hover:text-accent-foreground">
-              {{ partial "ui/icon.html" (dict "name" "mail" "class" "h-4 w-4 text-accent") }} {{ . }}
-            </a>
+          {{ with $club.email_obfuscated }}
+            <span class="inline-flex items-center gap-2">
+              {{ partial "ui/icon.html" (dict "name" "mail" "class" "h-4 w-4 text-accent") }}
+              <a href="mailto:" data-email-link data-obfuscated-email="{{ . }}" class="transition-colors hover:text-accent-foreground">{{ . }}</a>
+            </span>
           {{ end }}
       </div>
     </div>

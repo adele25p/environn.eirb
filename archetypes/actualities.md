@@ -1,6 +1,7 @@
 ---
 title: "Titre de l'actualité"
 date: {{ .Date }}
+draft: true
 description: "Résumé court de l'actualité."
 ---
 
