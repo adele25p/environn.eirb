@@ -8,7 +8,7 @@
   - Below the "sm" breakpoint the links move into a toggleable mobile menu
     (also handled by header.js).
 */ -}}
-<header id="site-header" data-scrolled="false" class="group fixed inset-x-0 top-0 z-50 border-b border-transparent bg-transparent transition-all duration-300 data-[scrolled=true]:border-border data-[scrolled=true]:bg-background/85 data-[scrolled=true]:backdrop-blur-md">
+<header id="site-header" data-scrolled="false" class="group fixed inset-x-0 top-0 z-50 border-b border-transparent bg-transparent transition-all duration-300 data-[scrolled=true]:border-line data-[scrolled=true]:bg-page/85 data-[scrolled=true]:backdrop-blur-md">
   <div class="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:h-20 sm:px-8">
 
     {{- /* Logo + site name. The logo shrinks slightly once scrolled. */}}
@@ -29,7 +29,7 @@
     {{- /* Mobile menu button: the two icons are swapped by header.js */}}
     {{ partial "ui/button.html" (dict
       "id" "menu-toggle"
-      "class" "-mr-2 p-2 text-foreground sm:hidden"
+      "class" "-mr-2 p-2 text-ink sm:hidden"
       "attrs" (dict "aria-label" "Menu" "aria-controls" "mobile-menu" "aria-expanded" "false")
       "content" (printf `<span data-icon="open">%s</span><span data-icon="close" hidden>%s</span>`
         (partial "ui/icon.html" (dict "name" "menu" "class" "h-5 w-5"))
@@ -39,7 +39,7 @@
   </div>
 
   {{- /* Mobile navigation (hidden until the button is clicked) */}}
-  <nav id="mobile-menu" hidden class="border-t border-border bg-background px-5 pb-4 sm:hidden" aria-label="Navigation mobile">
+  <nav id="mobile-menu" hidden class="border-t border-line bg-page px-5 pb-4 sm:hidden" aria-label="Navigation mobile">
     {{ range site.Menus.main }}
       <a href="{{ .URL | relURL }}" class="block rounded-lg px-3 py-3 text-sm font-medium hover:bg-accent/10 hover:text-accent">{{ .Name }}</a>
     {{ end }}

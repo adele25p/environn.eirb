@@ -4,7 +4,7 @@
   stays in sync with the club's public information.
 */ -}}
 {{- $club := hugo.Data.club -}}
-<footer class="mt-16 bg-primary text-primary-foreground">
+<footer class="mt-16 bg-ink text-page">
   <div class="mx-auto max-w-6xl px-5 py-8 sm:px-8 sm:py-10">
     <div class="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
       <div class="flex flex-col gap-8 sm:flex-row sm:items-center">
@@ -17,7 +17,7 @@
         </a>
 
         {{ with $club.school_url }}
-          <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center border-l-0 border-primary-foreground/20 transition-opacity hover:opacity-80 sm:border-l sm:pl-8" aria-label="Site de {{ $club.institution }}">
+          <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center border-l-0 border-page/20 transition-opacity hover:opacity-80 sm:border-l sm:pl-8" aria-label="Site de {{ $club.institution }}">
             {{ partial "ui/logo.html" (dict
               "size" 55
               "logo" "logo_institution"
@@ -30,20 +30,20 @@
 
       <div class="flex flex-wrap items-center gap-x-5 gap-y-3 text-sm">
           {{ with $club.telegram_info_url }}
-            <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 transition-colors hover:text-accent-foreground" aria-label="Consulter les informations sur Telegram">
+            <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 transition-colors hover:text-page" aria-label="Consulter les informations sur Telegram">
               {{ partial "ui/icon.html" (dict "name" "send" "class" "h-4 w-4 text-accent") }} Canal d'informations
             </a>
           {{ end }}
           {{ with $club.email_obfuscated }}
             <span class="inline-flex items-center gap-2">
               {{ partial "ui/icon.html" (dict "name" "mail" "class" "h-4 w-4 text-accent") }}
-              <a href="mailto:" data-email-link data-obfuscated-email="{{ . }}" class="transition-colors hover:text-accent-foreground">{{ . }}</a>
+              <a href="mailto:" data-email-link data-obfuscated-email="{{ . }}" class="transition-colors hover:text-page">{{ . }}</a>
             </span>
           {{ end }}
       </div>
     </div>
 
-    <div class="mt-8 flex flex-col gap-1 border-t border-primary-foreground/15 pt-5 text-xs text-primary-foreground/60 sm:flex-row sm:justify-between">
+    <div class="mt-8 flex flex-col gap-1 border-t border-page/15 pt-5 text-xs text-page/60 sm:flex-row sm:justify-between">
       <p>© {{ now.Year }} {{ $club.name }}. Tous droits réservés.</p>
       <p>Réalisé par Adèle, avec la contribution des membres de {{ $club.name }}.</p>
     </div>

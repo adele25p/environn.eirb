@@ -1,8 +1,8 @@
-<div class="h-full rounded-3xl border border-border bg-background p-6 sm:p-7">
+<div class="h-full rounded-3xl border border-line bg-page p-6 sm:p-7">
   <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-accent/10">
     {{ partial "ui/icon.html" (dict "name" .icon "class" "h-5 w-5 text-accent") }}
   </div>
-  <span class="mt-4 block text-xs tracking-wider text-muted-foreground uppercase">{{ .tag }}</span>
+  <span class="mt-4 block text-xs tracking-wider text-subtle uppercase">{{ .tag }}</span>
   {{ partial "components/typography/card-title.html" .title }}
-  <p class="mt-2 text-sm leading-relaxed text-muted-foreground">{{ .desc }}</p>
+  <p class="mt-2 text-sm leading-relaxed text-subtle">{{ .desc }}</p>
 </div>

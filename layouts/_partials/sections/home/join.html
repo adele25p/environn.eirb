@@ -5,7 +5,7 @@
   stays out of the public site source and is only returned after CAS login.
 */ -}}
 {{- $club := hugo.Data.club -}}
-<section id="join" class="bg-secondary/50 py-20 sm:py-28">
+<section id="join" class="bg-sage/50 py-20 sm:py-28">
   <div class="mx-auto max-w-6xl px-5 sm:px-8">
 
     {{ partial "components/section-header.html" (dict "icon" "send" "label" "Nous rejoindre" "title" "Viens faire vivre l’écologie sur le campus." "description" "Pas de réunions infinies, pas de bureaucratie. Tu viens à ton rythme, tu contribues quand tu veux. L’important, c’est l’envie.") }}
@@ -21,10 +21,10 @@
 
     {{- /* Telegram block */}}
     <div class="reveal-up" style="transition-delay: 120ms">
-      <div class="mt-8 flex flex-col justify-between gap-6 rounded-3xl bg-accent p-7 text-accent-foreground sm:flex-row sm:items-center sm:p-9">
+      <div class="mt-8 flex flex-col justify-between gap-6 rounded-3xl bg-accent p-7 text-page sm:flex-row sm:items-center sm:p-9">
         <div class="flex items-center gap-4">
-          <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent-foreground/15">
-            <span class="ping-dot h-2.5 w-2.5 rounded-full bg-accent-foreground"></span>
+          <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-page/15">
+            <span class="ping-dot h-2.5 w-2.5 rounded-full bg-page"></span>
           </div>
           <div>
             <h3 class="font-heading text-xl font-bold">Rejoins {{ $club.name }} sur Telegram</h3>
