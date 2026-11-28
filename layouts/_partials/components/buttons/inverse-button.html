@@ -1,1 +1,1 @@
-{{- partial "ui/button.html" (merge . (dict "class" (printf "inline-flex items-center justify-center gap-2 rounded-full bg-page px-6 py-3.5 font-medium whitespace-nowrap text-accent transition-all hover:brightness-95 %s" (.class | default "")))) -}}
+{{- partial "ui/button.html" (merge . (dict "class" (printf "btn-inverse %s" (.class | default "")))) -}}

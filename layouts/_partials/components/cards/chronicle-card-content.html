@@ -12,7 +12,7 @@
 
 <div class="p-6">
   <time class="text-xs text-subtle" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02/01/2006" }}</time>
-  <div class="mt-3 transition-colors group-hover:text-accent">{{ partial "components/typography/card-title.html" .Title }}</div>
+  <div class="mt-3 transition-colors group-hover:text-accent"><h2 class="title-card">{{ .Title }}</h2></div>
   <p class="mt-2 line-clamp-3 text-sm leading-relaxed text-subtle">{{ .Params.synthesis }}</p>
   <span class="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-accent">
     Lire la suite

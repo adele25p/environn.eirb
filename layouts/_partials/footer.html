@@ -5,7 +5,7 @@
 */ -}}
 {{- $club := hugo.Data.club -}}
 <footer class="mt-16 bg-ink text-page">
-  <div class="mx-auto max-w-6xl px-5 py-8 sm:px-8 sm:py-10">
+  <div class="container-site py-8 sm:py-10">
     <div class="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
       <div class="flex flex-col gap-8 sm:flex-row sm:items-center">
         <a href="{{ site.Home.RelPermalink }}" class="inline-flex items-center gap-3" aria-label="Retour à l'accueil">
@@ -30,14 +30,14 @@
 
       <div class="flex flex-wrap items-center gap-x-5 gap-y-3 text-sm">
           {{ with $club.telegram_info_url }}
-            <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 transition-colors hover:text-page" aria-label="Consulter les informations sur Telegram">
+            <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="footer-link inline-flex items-center gap-2" aria-label="Consulter les informations sur Telegram">
               {{ partial "ui/icon.html" (dict "name" "send" "class" "h-4 w-4 text-accent") }} Canal d'informations
             </a>
           {{ end }}
           {{ with $club.email_obfuscated }}
             <span class="inline-flex items-center gap-2">
               {{ partial "ui/icon.html" (dict "name" "mail" "class" "h-4 w-4 text-accent") }}
-              <a href="mailto:" data-email-link data-obfuscated-email="{{ . }}" class="transition-colors hover:text-page">{{ . }}</a>
+              <a href="mailto:" data-email-link data-obfuscated-email="{{ . }}" class="footer-link">{{ . }}</a>
             </span>
           {{ end }}
       </div>

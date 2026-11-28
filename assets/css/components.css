@@ -1,0 +1,55 @@
+/* components.css - All reusable classes of the site.
+ * In HTML, write <h2 class="title-section">, never "text-4xl font-bold..." */
+
+@layer components {
+
+  /* --- Text --- */
+  .title-page    { @apply font-heading text-3xl leading-tight font-bold tracking-tight text-ink sm:text-5xl; }
+  .title-section { @apply font-heading text-3xl leading-tight font-bold tracking-tight text-ink sm:text-5xl; }
+  .title-section span { @apply text-accent; }
+  .title-card    { @apply font-heading text-xl leading-snug font-bold tracking-tight text-ink; }
+  .lead          { @apply max-w-xl text-lg leading-relaxed text-subtle; }
+  .text-body     { @apply text-base leading-relaxed text-subtle; }
+  .text-caption  { @apply text-subtle text-sm; }
+
+  /* --- Layout (vertical spacing is defined HERE only) --- */
+  .container-site    { @apply mx-auto w-full max-w-6xl px-5 sm:px-8; }
+  .container-reading { @apply mx-auto w-full max-w-3xl px-5 sm:px-8; }  /* single pages */
+  .section           { @apply py-20 sm:py-28; }
+  .section-alt       { @apply bg-sage/50; }   /* combine with .section */
+  .section-header    { @apply mb-10 flex flex-col gap-5 sm:mb-12; }
+  .grid-cards        { @apply grid gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3; }
+
+  /* --- Buttons: <a class="btn btn-primary"> --- */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-7 py-4
+           font-medium no-underline transition-all;
+  }
+  .btn-primary   { @apply bg-accent text-page hover:-translate-y-0.5 hover:brightness-95; }
+  .btn-secondary {
+    @apply shrink-0 border border-line px-4 py-2 text-sm text-accent
+           font-medium transition-colors hover:bg-accent/10;
+  }
+  .btn-link     { @apply inline-flex items-center gap-2 font-medium text-accent no-underline transition-all hover:gap-3; }
+  .btn-icon     { @apply inline-flex items-center justify-center rounded-full p-2 text-subtle transition-colors hover:bg-sage; }
+  .btn-inverse  { @apply inline-flex items-center justify-center gap-2 rounded-full bg-page px-6 py-3.5 font-medium whitespace-nowrap text-accent transition-all hover:brightness-95; }
+
+  /* --- Cards and badges --- */
+  .card, .card-link { @apply rounded-3xl border border-line bg-surface; }
+  .card-page { @apply bg-page; }
+  .card-link { @apply no-underline; }
+  .card-link, .card-hover { @apply transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-accent/5; }
+  .badge     { @apply inline-flex w-fit items-center gap-2 rounded-full bg-accent/10 px-3 py-1 text-sm font-medium text-accent; }
+
+  /* --- Forms --- */
+  .field-label { @apply font-heading text-sm font-medium text-ink; }
+  .field-error { @apply text-sm text-danger; }
+  .field {
+    @apply w-full rounded-md border border-line bg-page px-4 py-2.5 text-ink
+           placeholder:text-subtle focus:border-accent;
+  }
+
+  /* --- Navigation --- */
+  .nav-link    { @apply font-medium text-ink no-underline transition-colors hover:text-accent; }
+  .footer-link { @apply text-sage no-underline transition-colors hover:text-page; }
+}

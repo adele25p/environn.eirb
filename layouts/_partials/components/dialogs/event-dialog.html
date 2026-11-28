@@ -8,7 +8,7 @@
       </div>
       {{ partial "components/buttons/icon-button.html" (dict "attrs" (dict "data-dialog-close" true "aria-label" "Fermer") "content" "×") }}
     </div>
-    <p class="mt-5 leading-relaxed text-subtle">{{ $event.description }}</p>
+    <p class="mt-5 text-body">{{ $event.description }}</p>
     <p class="mt-5 text-sm"><strong>Date :</strong> {{ dateFormat "02/01/2006" $event.date }}<br><strong>Lieu :</strong> {{ $event.location }}</p>
   </div>
 </dialog>

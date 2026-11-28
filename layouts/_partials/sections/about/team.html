@@ -4,8 +4,8 @@
   Team members are loaded from data/team.yaml. The staggered transition
   delay keeps the cards visually progressive when the section is revealed.
 */ -}}
-<section class="bg-sage/50 py-20 sm:py-28">
-    <div class="mx-auto max-w-6xl px-5 sm:px-8">
+<section class="section section-alt">
+    <div class="container-site">
         {{ partial "components/section-header.html" (dict
             "icon" "users"
             "label" "L’équipe"
@@ -13,7 +13,7 @@
             "titleAccent" "qui font avancer le club."
             "description" "Une équipe étudiante ouverte aux idées et aux bonnes volontés."
         ) }}
-        <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="mt-12 grid-cards">
             {{ range $i, $member := hugo.Data.team }}
                 <div class="reveal-up" style="transition-delay: {{ mul $i 90 }}ms">
                     {{ partial "components/cards/member-card.html" $member }}

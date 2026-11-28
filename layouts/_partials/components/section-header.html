@@ -23,19 +23,22 @@
 {{- $titleAccent := .titleAccent -}}
 {{- $description := .description -}}
 
-<div class="reveal-up">
+<div class="reveal-up section-header">
   {{- if $label }}
-    <span class="inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 text-sm font-medium text-accent">
-      {{ partial "components/typography/eyebrow.html" (dict "icon" $icon "label" $label) }}
+    <span class="badge">
+      {{- if $icon }}{{ partial "ui/icon.html" (dict "name" $icon "class" "h-3.5 w-3.5") }}{{ end -}}
+      {{ $label }}
     </span>
   {{- end }}
 
   {{- if $title }}
-    {{ partial "components/typography/section-title.html" (dict "label" $label "title" $title "accent" $titleAccent) }}
+    <h2 class="title-section">
+      {{ $title }}{{ with $titleAccent }}<br><span>{{ . }}</span>{{ end }}
+    </h2>
   {{- end }}
 
   {{- if $description }}
-    <p class="mt-5 max-w-xl text-lg leading-relaxed text-subtle">
+    <p class="lead">
       {{ $description }}
     </p>
   {{- end }}

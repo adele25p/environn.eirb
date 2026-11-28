@@ -1,2 +1,2 @@
 {{- $content := partial "components/cards/feed-card-content.html" . -}}
-{{ partial "ui/card.html" (dict "tag" "a" "href" .RelPermalink "class" "group flex h-full flex-col rounded-3xl border border-line bg-surface p-6 transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-accent/5 sm:p-7" "content" $content) }}
+{{ partial "ui/card.html" (dict "tag" "a" "href" .RelPermalink "class" "card-link group flex h-full flex-col p-6 sm:p-7" "content" $content) }}

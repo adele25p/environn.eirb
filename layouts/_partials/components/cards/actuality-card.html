@@ -1,6 +1,6 @@
-<article class="reveal-up rounded-3xl border border-line bg-surface p-6">
-  <time class="text-sm text-subtle" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02/01/2006" }}</time>
-  {{ partial "components/typography/card-title.html" .Title }}
+<article class="reveal-up card p-6">
+  <time class="text-caption" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02/01/2006" }}</time>
+  <h2 class="title-card">{{ .Title }}</h2>
   <p class="mt-2 text-sm leading-relaxed text-subtle">{{ .Params.description }}</p>
   {{ partial "components/buttons/link-button.html" (dict "class" "mt-5" "href" .RelPermalink "content" (printf `Lire l’actualité %s` (partial "ui/icon.html" (dict "name" "arrow-right")))) }}
 </article>

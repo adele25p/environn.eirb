@@ -4,8 +4,8 @@
   and skips drafts.
 */ -}}
 {{- $chronicles := site.GetPage "/chronicles" -}}
-<section id="chronicles" class="py-20 sm:py-28">
-  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+<section id="chronicles" class="section">
+  <div class="container-site">
 
     {{ partial "components/section-header.html" (dict "icon" "leaf" "label" "Le Fil éco" "title" "1 à 2 infos par semaine," "titleAccent" "rien de plus.") }}
 
@@ -20,7 +20,7 @@
           {{ end }}
         </div>
       {{ else }}
-        <p class="text-subtle">Les premières chroniques arrivent bientôt 🌱</p>
+        <p class="text-body">Les premières chroniques arrivent bientôt 🌱</p>
       {{ end }}
     </div>
 

@@ -1,0 +1,17 @@
+/* prose.css - Typography of Markdown content (chronicles AND actualities).
+ * The Markdown rendered by Hugo is wrapped in <div class="prose-eco">.
+ * One single style for the whole site keeps everything consistent. */
+
+@layer components {
+  .prose-eco h2         { @apply mt-9 mb-3 font-heading text-3xl leading-tight font-bold tracking-tight text-ink; }
+  .prose-eco h3         { @apply mt-7 mb-2 font-heading text-xl leading-snug font-bold text-ink; }
+  .prose-eco p          { @apply my-4 text-lg leading-7 text-subtle first:mt-0; }
+  .prose-eco ul         { @apply my-4 list-disc pl-6; }
+  .prose-eco ol         { @apply my-4 list-decimal pl-6; }
+  .prose-eco li         { @apply mt-2 leading-7 text-subtle; }
+  .prose-eco strong     { @apply font-semibold text-ink; }
+  .prose-eco a          { @apply underline underline-offset-2 hover:text-ink; }
+  .prose-eco img        { @apply my-6 h-auto max-w-full rounded-lg; }
+  .prose-eco blockquote { @apply my-6 border-l-4 border-accent pl-5 text-subtle italic; }
+  .prose-eco hr         { @apply my-8 border-line; }
+}

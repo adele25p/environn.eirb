@@ -1,6 +1,6 @@
 {{- $event := .event -}}
-<article class="reveal-up rounded-3xl border border-line bg-page p-6"{{ with .delay }} style="transition-delay: {{ . }}ms"{{ end }}>
+<article class="reveal-up card card-page p-6"{{ with .delay }} style="transition-delay: {{ . }}ms"{{ end }}>
   <time class="text-xs uppercase tracking-wider text-accent" datetime="{{ $event.date }}">{{ dateFormat "02/01/2006" $event.date }}</time>
-  {{ partial "components/typography/card-title.html" $event.title }}
+  <h2 class="title-card">{{ $event.title }}</h2>
   <p class="mt-2 text-sm leading-relaxed text-subtle">{{ $event.description }}</p>
 </article>
